@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Premium Just Bumm Inspired Palette */
+  --bg-main: #FAF4EE; /* Soft beige background */
+  --bg-white: #FFFFFF;
+  --bg-card-1: #EBE5F0; /* Soft purple */
+  --bg-card-2: #F5E6E6; /* Soft pink */
+  --bg-card-3: #E1ECEB; /* Soft teal */
+  --bg-card-4: #F0EAD6; /* Soft yellow/sand */
+  
+  --primary: #A1E2D9; /* Mint/Teal from buttons/accents */
+  --primary-hover: #8FDEC2;
+  --text-dark: #222222;
+  --text-body: #4A4A4A;
+  --text-light: #7A7A7A;
+  
+  /* Typography */
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --max-width: 1300px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 3rem;
+  --spacing-xl: 5rem;
+  
+  /* Elements */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(0,0,0,0.03);
+  --shadow-hover: 0 10px 30px rgba(0,0,0,0.08);
+  --border-color: #EAEAEA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background-color: var(--bg-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+/* Utilities */
+.text-center {
+  text-align: center;
+}
+
+/* Wavy Marquee Styles */
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: var(--primary);
+  padding: 12px 0;
+  position: relative;
+  z-index: 10;
+  transform: translateY(-20px);
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  letter-spacing: 0.5px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Button */
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--text-dark);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Responsive Hero Image */
+.hero-section {
+  height: 60vh;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    height: 75vh;
+    max-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-image {
+    object-fit: contain;
+    object-position: center bottom;
+  }
+}
+
+/* Global Mobile Typography Overrides */
+@media (max-width: 768px) {
+  /* Consistent Heading Sizes and Alignment */
+  h1 { font-size: 2.2rem !important; line-height: 1.2 !important; text-align: center !important; }
+  h2 { font-size: 1.8rem !important; line-height: 1.3 !important; text-align: center !important; }
+  h3 { font-size: 1.4rem !important; text-align: center !important; }
+  h4 { font-size: 1.2rem !important; text-align: center !important; }
+  
+  /* Center paragraphs for consistent mobile look */
+  p { text-align: center !important; }
+
+  /* Ensure feature lists and specific elements aren't broken by global centering */
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .feature-list li {
+    text-align: left !important;
+  }
+  .accordion-text p, .faq-card p {
+    text-align: left !important;
+  }
+  
+  /* Center buttons */
+  a.btn-primary, button.btn-primary {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex !important;
+  }
+}

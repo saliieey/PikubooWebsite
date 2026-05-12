@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "title": "Reusable Cloth Diaper (Yellow) with Cloth Diaper Inserts",
+    "price": 799,
+    "rating": "5.0",
+    "reviewsCount": 1256,
+    "color": "Yellow",
+    "size": "Free Size",
+    "images": [
+      "/images/yellow-cotton-diaper-and-box-shop-page.png",
+      "/images/yellow-cotton-diaper-multiple-snaps-shop-page.png",
+      "/images/yellow-cotton-diaper-no-leaks-shop-page.png",
+      "/images/yellow-cotton-diaper-soft-elastic-shop-page.png",
+      "/images/yellow-cotton-diaper-washable-shop-page.png"
+    ],
+    "amazonLink": "https://www.amazon.in",
+    "flipkartLink": "https://www.flipkart.com"
+  },
+  {
+    "id": 2,
+    "title": "Reusable Cloth Diaper (Red) with Cloth Diaper Inserts",
+    "price": 799,
+    "rating": "5.0",
+    "reviewsCount": 1256,
+    "color": "Red",
+    "size": "Free Size",
+    "images": [
+      "/images/red-cotton-diaper-and-box-shop-page.png",
+      "/images/red-cotton-diaper-multiple-snaps-shop-page.png",
+      "/images/red-cotton-diaper-no-leaks-shop-page.png",
+      "/images/red-cotton-diaper-soft-elastic-shop-page.png",
+      "/images/red-cotton-diaper-washable-shop-page.png"
+    ],
+    "amazonLink": "https://www.amazon.in",
+    "flipkartLink": "https://www.flipkart.com"
+  },
+  {
+    "id": 3,
+    "title": "Reusable Cloth Diaper (Green) with Cloth Diaper Inserts",
+    "price": 799,
+    "rating": "5.0",
+    "reviewsCount": 1256,
+    "color": "Green",
+    "size": "Free Size",
+    "images": [
+      "/images/green-cotton-diaper-and-box-shop-page.png",
+      "/images/green-cotton-diaper-multiple-snaps-shop-page.png",
+      "/images/green-cotton-diaper-no-leaks-shop-page.png",
+      "/images/green-cotton-diaper-soft-elastic-shop-page.png",
+      "/images/green-cotton-diaper-washable-shop-page.png"
+    ],
+    "amazonLink": "https://www.amazon.in",
+    "flipkartLink": "https://www.flipkart.com"
+  },
+  {
+    "id": 4,
+    "title": "Reusable Cloth Diaper (Blue) with Cloth Diaper Inserts",
+    "price": 799,
+    "rating": "5.0",
+    "reviewsCount": 1256,
+    "color": "Blue",
+    "size": "Free Size",
+    "images": [
+      "/images/blue-cotton-diaper-and-box-shop-page.png",
+      "/images/blue-cotton-diaper-multiple-snaps-shop-page.png",
+      "/images/blue-cotton-diaper-no-leaks-shop-page.png",
+      "/images/blue-cotton-diaper-soft-elastic-shop-page.png",
+      "/images/blue-cotton-diaper-washable-shop-page.png"
+    ],
+    "amazonLink": "https://www.amazon.in",
+    "flipkartLink": "https://www.flipkart.com"
+  },
+  {
+    "id": 5,
+    "title": "Reusable Cloth Diaper (Violet) with Cloth Diaper Inserts",
+    "price": 799,
+    "rating": "5.0",
+    "reviewsCount": 1256,
+    "color": "Violet",
+    "size": "Free Size",
+    "images": [
+      "/images/violet-cotton-diaper-and-box-shop-page.png",
+      "/images/violet-cotton-diaper-multiple-snaps-shop-page.png",
+      "/images/violet-cotton-diaper-no-leaks-shop-page.png",
+      "/images/violet-cotton-diaper-soft-elastic-shop-page.png",
+      "/images/violet-cotton-diaper-washable-shop-page.png"
+    ],
+    "amazonLink": "https://www.amazon.in",
+    "flipkartLink": "https://www.flipkart.com"
+  },
+  {
+    "id": 6,
+    "title": "Cloth Diaper Inserts Pikuboo",
+    "price": 99,
+    "rating": "5.0",
+    "reviewsCount": 1256,
+    "color": "White",
+    "size": "Free Size",
+    "images": [
+      "/images/cloth-diaper-inserts-pikuboo.png",
+      "/images/cotton-diaper-inserts-pikuboo.png"
+    ],
+    "amazonLink": "https://www.amazon.in",
+    "flipkartLink": "https://www.flipkart.com"
+  }
+]
