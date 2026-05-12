@@ -17,13 +17,10 @@ const ProductCard = ({ title, price, image, rating, bgColor }) => {
         aspectRatio: '1/1',
         borderRadius: 'var(--radius-md)', 
         position: 'relative',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem',
+        padding: '2.5rem',
         marginBottom: '1rem'
       }}>
-        <img src={image} alt={title} style={{ width: '85%', height: '85%', objectFit: 'contain' }} />
+        <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', margin: '0 auto' }} />
         
         {/* Floating Rating Badge */}
         <div style={{
