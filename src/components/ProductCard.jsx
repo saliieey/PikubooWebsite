@@ -46,7 +46,7 @@ const ProductCard = ({ title, price, image, rating, bgColor }) => {
       </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-        <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '0.25rem' }}>{title}</h3>
+        <div style={{ fontSize: '1.05rem', fontWeight: 600, marginBottom: '0.25rem', fontFamily: 'var(--font-heading)', color: 'var(--text-dark)', lineHeight: 1.2 }}>{title}</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
           <span style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>₹</span>
           <span style={{ fontSize: '1.1rem', fontWeight: 700 }}>{price}</span>

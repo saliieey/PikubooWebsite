@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ShopProductCard from '../components/ShopProductCard';
-import productsData from '../data/products.json';
+import { client, urlFor } from '../sanityClient';
 
 const Shop = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const query = `*[_type == "product"]`;
+        const data = await client.fetch(query);
+        // Map Sanity data format to match the existing component's expected format
+        const formattedData = data.map(item => ({
+          id: item._id,
+          title: item.title,
+          price: item.price.toString(),
+          rating: item.rating.toString(),
+          reviewsCount: item.reviewsCount || 0,
+          size: item.size || 'Free Size',
+          bgColor: item.bgColor,
+          images: item.images ? item.images.map(img => urlFor(img).url()) : [],
+          amazonLink: item.amazonLink,
+          flipkartLink: item.flipkartLink
+        }));
+        setProducts(formattedData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products from Sanity:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <>
       <Helmet>
@@ -51,9 +82,19 @@ const Shop = () => {
       {/* Products List */}
       <section className="shop-products-list">
         <div className="container">
-          {productsData.map((product) => (
-            <ShopProductCard key={product.id} product={product} />
-          ))}
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '4rem 0', fontSize: '1.2rem', color: 'var(--text-light)' }}>
+              Loading products...
+            </div>
+          ) : products.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '4rem 0', fontSize: '1.2rem', color: 'var(--text-light)' }}>
+              No products found. Add some in your Sanity admin dashboard!
+            </div>
+          ) : (
+            products.map((product) => (
+              <ShopProductCard key={product.id} product={product} />
+            ))
+          )}
         </div>
       </section>
 
