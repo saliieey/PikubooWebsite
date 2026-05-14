@@ -8,6 +8,7 @@ import WhyReusable from './pages/WhyReusable';
 import DomesticWholesale from './pages/DomesticWholesale';
 import IntlWholesale from './pages/IntlWholesale';
 import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 import './App.css';
@@ -26,6 +27,7 @@ function App() {
           <Route path="/domestic-wholesale" element={<DomesticWholesale />} />
           <Route path="/international-wholesale" element={<IntlWholesale />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           {/* Fallback routes for links */}
           <Route path="/wholesale" element={<Shop />} />
           <Route path="/faq" element={<FAQ />} />

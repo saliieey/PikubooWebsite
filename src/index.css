@@ -9,8 +9,8 @@
   --bg-card-3: #E1ECEB; /* Soft teal */
   --bg-card-4: #F0EAD6; /* Soft yellow/sand */
   
-  --primary: #A1E2D9; /* Mint/Teal from buttons/accents */
-  --primary-hover: #8FDEC2;
+  --primary: #a2cf8d; /* Brand Green */
+  --primary-hover: #8fc278; /* Slightly darker for hover */
   --text-dark: #222222;
   --text-body: #4A4A4A;
   --text-light: #7A7A7A;
@@ -200,4 +200,21 @@ img {
     margin-right: auto !important;
     display: flex !important;
   }
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card:hover .blog-card-image {
+  transform: scale(1.05);
+}
+
+.blog-card .read-article-link:hover {
+  color: var(--primary-dark);
+}
+
+.blog-card-title:hover {
+  color: var(--primary);
 }
