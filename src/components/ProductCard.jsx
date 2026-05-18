@@ -1,7 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ProductCard = ({ title, price, image, rating, bgColor }) => {
+const ProductCard = ({ title, price, image, rating, bgColor, amazonLink, flipkartLink }) => {
+  const handleBuyClick = () => {
+    if (amazonLink) {
+      window.open(amazonLink, '_blank');
+    } else if (flipkartLink) {
+      window.open(flipkartLink, '_blank');
+    } else {
+      alert("This product will be available on Amazon/Flipkart soon!");
+    }
+  };
+
   return (
     <motion.div 
       whileHover={{ y: -5 }}
@@ -11,6 +21,7 @@ const ProductCard = ({ title, price, image, rating, bgColor }) => {
         height: '100%',
         cursor: 'pointer'
       }}
+      onClick={handleBuyClick}
     >
       <div style={{ 
         width: '100%',
@@ -52,7 +63,14 @@ const ProductCard = ({ title, price, image, rating, bgColor }) => {
           <span style={{ fontSize: '1.1rem', fontWeight: 700 }}>{price}</span>
         </div>
         
-        <button className="btn-primary" style={{ width: '100%', marginTop: 'auto', padding: '10px' }}>
+        <button 
+          className="btn-primary" 
+          style={{ width: '100%', marginTop: 'auto', padding: '10px' }}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleBuyClick();
+          }}
+        >
           Add to cart
         </button>
       </div>

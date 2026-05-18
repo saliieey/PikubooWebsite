@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import ProductCard from '../components/ProductCard';
+import { client, urlFor } from '../sanityClient';
 
 const Home = () => {
   const categories = [
@@ -10,12 +11,34 @@ const Home = () => {
     { name: 'Blue', image: '/images/pikuboo-cloth-diaper-blue.png', color: 'var(--bg-card-4)' }
   ];
 
-  const products = [
-    { id: 1, title: 'Pikuboo Cloth Diaper (Yellow)', price: '799', rating: '4.6', image: '/images/pikuboo-cloth-diaper-yellow.png', bgColor: 'var(--bg-card-1)' },
-    { id: 2, title: 'Pikuboo Cloth Diaper (Green)', price: '799', rating: '4.9', image: '/images/pikuboo-cloth-diaper-green.png', bgColor: 'var(--bg-card-3)' },
-    { id: 3, title: 'Pikuboo Cloth Diaper (Red)', price: '799', rating: '4.7', image: '/images/pikuboo-cloth-diaper-red.png', bgColor: 'var(--bg-card-2)' },
-    { id: 4, title: 'Pikuboo Cloth Diaper (Blue)', price: '799', rating: '4.8', image: '/images/pikuboo-cloth-diaper-blue.png', bgColor: 'var(--bg-card-4)' },
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const query = `*[_type == "product"][0...4]`; // Fetch top 4 products for homepage
+        const data = await client.fetch(query);
+        const formattedData = data.map(item => ({
+          id: item._id,
+          title: item.title,
+          price: item.price ? item.price.toString() : '799',
+          rating: item.rating ? item.rating.toString() : '4.8',
+          image: item.images && item.images.length > 0 ? urlFor(item.images[0]).url() : '/images/pikuboo-cloth-diaper-yellow.png',
+          bgColor: item.bgColor || 'var(--bg-card-1)',
+          amazonLink: item.amazonLink,
+          flipkartLink: item.flipkartLink
+        }));
+        setProducts(formattedData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products from Sanity:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const features = [
     { title: 'Reusable & Washable', desc: 'Pikuboo diapers are made to be used over and over. Just wash, dry, and reuse—it’s the easiest and most affordable way for parents to make a responsible, eco-friendly decision.', icon: '/images/washable-icon-feature-home-page.png' },
@@ -95,9 +118,19 @@ const Home = () => {
           </div>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
-            {products.map((product) => (
-              <ProductCard key={product.id} {...product} />
-            ))}
+            {loading ? (
+              <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '2rem 0', color: 'var(--text-light)' }}>
+                Loading our bestsellers...
+              </div>
+            ) : products.length === 0 ? (
+              <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '2rem 0', color: 'var(--text-light)' }}>
+                No products found. Add some in your Sanity admin dashboard!
+              </div>
+            ) : (
+              products.map((product) => (
+                <ProductCard key={product.id} {...product} />
+              ))
+            )}
           </div>
         </div>
       </section>
