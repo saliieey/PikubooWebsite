@@ -180,22 +180,42 @@ const About = () => {
             padding: 0 1rem;
           }
         }
+
+        /* Responsive video container */
+        .about-video-wrapper {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 16/9; /* Perfect aspect ratio for mobile viewports */
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          box-shadow: var(--shadow-hover);
+          border: 1px solid rgba(0,0,0,0.05);
+          margin-bottom: 3.5rem;
+          background-color: #000000;
+        }
+        .about-video-wrapper video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        @media (min-width: 992px) {
+          .about-video-wrapper {
+            height: 580px; /* Elegant, premium height on desktop */
+          }
+        }
+        @media (max-width: 768px) {
+          .about-video-wrapper {
+            margin-bottom: 2rem;
+          }
+        }
       `}</style>
 
       {/* Hero Section */}
       <section className="about-hero-section" style={{ padding: '4rem 0 5rem 0' }}>
         <div className="container">
           {/* Full-width Video Container matching navbar boundaries */}
-          <div className="about-video-wrapper" style={{ 
-            width: '100%', 
-            height: 'clamp(250px, 65vh, 620px)',
-            borderRadius: 'var(--radius-lg)', 
-            overflow: 'hidden', 
-            boxShadow: 'var(--shadow-hover)', 
-            border: '1px solid rgba(0,0,0,0.05)',
-            marginBottom: '3.5rem',
-            backgroundColor: '#000000'
-          }}>
+          <div className="about-video-wrapper">
             <video 
               src="/images/about-us-video.mp4" 
               controls 
@@ -203,12 +223,6 @@ const About = () => {
               muted 
               loop 
               playsInline 
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover',
-                display: 'block'
-              }}
             />
           </div>
 
