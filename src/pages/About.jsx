@@ -183,23 +183,55 @@ const About = () => {
       `}</style>
 
       {/* Hero Section */}
-      <section className="about-hero-section">
+      <section className="about-hero-section" style={{ padding: '4rem 0 5rem 0' }}>
         <div className="container">
-          <div className="about-hero-grid">
-            <div className="about-hero-text">
-              <h1 style={{ marginBottom: '1.5rem' }}>About Pikuboo</h1>
-              <p>
+          {/* Full-width Video Container matching navbar boundaries */}
+          <div className="about-video-wrapper" style={{ 
+            width: '100%', 
+            height: 'clamp(250px, 65vh, 620px)',
+            borderRadius: 'var(--radius-lg)', 
+            overflow: 'hidden', 
+            boxShadow: 'var(--shadow-hover)', 
+            border: '1px solid rgba(0,0,0,0.05)',
+            marginBottom: '3.5rem',
+            backgroundColor: '#000000'
+          }}>
+            <video 
+              src="/images/about-us-video.mp4" 
+              controls 
+              autoPlay 
+              muted 
+              loop 
+              playsInline 
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+
+          {/* Text Content below the video */}
+          <div className="about-hero-content-wrapper" style={{ maxWidth: '850px', margin: '0 auto', textAlign: 'center' }}>
+            <h1 style={{ marginBottom: '1.8rem', fontSize: '2.8rem', color: 'var(--text-dark)', fontWeight: 800 }}>About Pikuboo</h1>
+            <div style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '1.5rem',
+              textAlign: 'center'
+            }}>
+              <p style={{ color: 'var(--text-body)', fontSize: '1.15rem', lineHeight: '1.9', margin: 0, textAlign: 'center' }}>
                 Meet Pikuboo, a locally owned and operated manufacturer of cotton diapers in Kerala. Our cotton diapers are made to provide comfort and safety for your baby and sustainability for our planet. We are your one-stop shop for eco-friendly diapering solutions tailored for you and your child's needs, so parents can provide the safest, most sustainable, and well-thought-out baby care options in an era of smarter, greener parenting.
               </p>
-              <p>
+              <p style={{ color: 'var(--text-body)', fontSize: '1.15rem', lineHeight: '1.9', margin: 0, textAlign: 'center' }}>
                 At Pikuboo, we are a manufacturer of premium cotton diapers that offer comfort, safety, and sustainability for parents today. We know that traditional diapering produces waste, which is why our baby products are functional and made locally using products that reduce waste and support customers in keeping strong babies that are happy and healthy. We are committed to sustainable design and manufacture, offering both retail and wholesale diapering options of high quality that protect children and the earth as you take care of your child with a cleaner, healthier tomorrow.
               </p>
-              <Link to="/shop" className="btn-primary" style={{ marginTop: '1rem', borderRadius: 'var(--radius-pill)', padding: '14px 32px' }}>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3.5rem' }}>
+              <Link to="/shop" className="btn-primary" style={{ borderRadius: 'var(--radius-pill)', padding: '14px 38px', fontSize: '1.05rem', fontWeight: 600 }}>
                 Shop Now
               </Link>
-            </div>
-            <div className="about-hero-img-wrapper">
-              <img src="/images/Untitled design (27).png" alt="About Pikuboo" className="about-hero-img" />
             </div>
           </div>
         </div>
