@@ -40,8 +40,13 @@ const About = () => {
       <style>{`
         /* Hero Section */
         .about-hero-section {
-          padding: 5rem 0;
+          padding: 1.5rem 0 3rem 0;
           background-color: var(--bg-main);
+        }
+        @media (max-width: 992px) {
+          .about-hero-section {
+            padding: 4rem 0 5rem 0;
+          }
         }
         .about-hero-grid {
           display: grid;
@@ -83,6 +88,10 @@ const About = () => {
           border-radius: var(--radius-lg);
           padding: 3rem;
           height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
         }
         .mission-icon {
           width: 50px;
@@ -183,26 +192,22 @@ const About = () => {
 
         /* Responsive video container */
         .about-video-wrapper {
+          position: relative;
           width: 100%;
           height: auto;
-          aspect-ratio: 16/9; /* Perfect aspect ratio for mobile viewports */
+          aspect-ratio: 16/9; /* Perfect aspect ratio for all viewports, ensuring zero crop */
           border-radius: var(--radius-lg);
           overflow: hidden;
           box-shadow: var(--shadow-hover);
           border: 1px solid rgba(0,0,0,0.05);
           margin-bottom: 3.5rem;
-          background-color: #000000;
+          background-color: var(--bg-main);
         }
-        .about-video-wrapper video {
+        .about-video-fg {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
-        }
-        @media (min-width: 992px) {
-          .about-video-wrapper {
-            height: 580px; /* Elegant, premium height on desktop */
-          }
         }
         @media (max-width: 768px) {
           .about-video-wrapper {
@@ -212,13 +217,13 @@ const About = () => {
       `}</style>
 
       {/* Hero Section */}
-      <section className="about-hero-section" style={{ padding: '4rem 0 5rem 0' }}>
+      <section className="about-hero-section">
         <div className="container">
           {/* Full-width Video Container matching navbar boundaries */}
           <div className="about-video-wrapper">
             <video 
+              className="about-video-fg"
               src="/images/about-us-video.mp4" 
-              controls 
               autoPlay 
               muted 
               loop 
