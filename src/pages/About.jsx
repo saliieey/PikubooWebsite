@@ -9,19 +9,19 @@ const About = () => {
   const values = [
     {
       title: "Brand Story",
-      content: "Pikuboo was established in Kochi, Kerala, in 2023, with the aim of addressing the higher diaper waste crisis and protecting baby health. The founders of Pikuboo, witnessed the increasing problems related to disposable diapers, which drove him to create premium washable diapers made from certified organic cotton. We manufacture our diapers locally and are committed to minimizing our carbon impact by using sustainable and eco-friendly practices. We are providing peace of mind to countless numbers of parents, wholesalers, and retailers to have easily accessible, sustainable baby care products"
+      content: "Pikuboo was established in Kochi, Kerala, in 2023, with the aim of addressing the higher diaper waste crisis and protecting baby health. The founders of Pikuboo, witnessed the increasing problems related to disposable diapers, which drove him to create premium washable diapers made from premium organic cotton. We manufacture our diapers locally and are committed to minimizing our carbon impact by using sustainable and eco-friendly practices. We are providing peace of mind to countless numbers of parents, wholesalers, and retailers to have easily accessible, sustainable baby care products"
     },
     {
       title: "What Makes Us Unique",
-      content: "As a certified manufacturer based in Kerala, Pikuboo is focused on diapering, specifically cotton diapers, and we are complying with international standards in quality and safety. Our eco-conscious thinking, local craftsmanship, and premium certified fabrics are reasons we have become the go-to sustainable diaper manufacturer."
+      content: "As a premium manufacturer based in Kerala, Pikuboo is focused on diapering, specifically cotton diapers, and we comply with international standards in quality and safety. Our eco-conscious thinking, local craftsmanship, and premium fabrics are reasons we have become the go-to sustainable diaper manufacturer."
     },
     {
       title: "Customer Focus",
       content: "We have customers—both parents and retailers and wholesalers—all over the world, from Africa to North America, Europe, and Oceania. We make and sell eco-friendly washable diapers designed for comfort and reliability. Whether you are buying one diaper for personal use or placing a bulk order, we pride ourselves on being customer first."
     },
     {
-      title: "Certifications & Quality",
-      content: "We use GOTS-certified cotton and subject ourselves to OEKO-TEX® testing. This way you can be assured each diaper is safe, soft, and durable. The testing and stripping process our cotton material goes through ensures that we are making premium cotton diapers parents all over the world can rely on to deliver above and beyond their expectations."
+      title: "Quality & Safety",
+      content: "We use premium organic cotton and subject our products to rigorous quality testing. This way you can be assured each diaper is safe, soft, and durable. The testing and design process our cotton material goes through ensures that we are making premium cotton diapers parents all over the world can rely on to deliver above and beyond their expectations."
     }
   ];
 
@@ -218,7 +218,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          
+
           <div className="mission-vision-grid">
             <div className="mission-card">
               <img src="/images/mission-icon-about-us-page.png" alt="Mission Icon" className="mission-icon" />
@@ -227,7 +227,7 @@ const About = () => {
                 Our mission is to reduce diaper waste by providing safe, sustainable washable diapers for every child. Our purpose is to enable parents to have eco-friendly options that protect babies health and our planet through design and quality.
               </p>
             </div>
-            
+
             <div className="mission-card">
               <img src="/images/vision-icon-about-us-page.png" alt="Vision Icon" className="mission-icon" />
               <h3 style={{ marginBottom: '1rem' }}>Our Vision</h3>
@@ -246,10 +246,10 @@ const About = () => {
             <div>
               <h2 style={{ marginBottom: '1.5rem' }}>Our Company and Values</h2>
               <p style={{ color: 'var(--text-body)', fontSize: '1.1rem', lineHeight: '1.8' }}>
-                We are Pikuboo, and we are committed to changing baby care with eco-friendly cotton diapers focused on both baby health and the health of our planet. Founded in 2023 in Kerala, our locally manufactured products combine sustainability, safety, and comfort. With GOTS and OEKO-TEX® certifications, we offer parent-quality products that they can trust. We proudly serve individuals, retailers, and wholesalers everywhere by providing ethically and responsibly sourced products. More than products, we want to create a future where washable diapers will totally replace disposables and provide sustainable parenting globally.
+                We are Pikuboo, and we are committed to changing baby care with eco-friendly cotton diapers focused on both baby health and the health of our planet. Founded in 2023 in Kerala, our locally manufactured products combine sustainability, safety, and comfort. With our high standards and focus on child safety, we offer parent-quality products that they can trust. We proudly serve individuals, retailers, and wholesalers everywhere by providing ethically and responsibly sourced products. More than products, we want to create a future where washable diapers will totally replace disposables and provide sustainable parenting globally.
               </p>
             </div>
-            
+
             <div className="accordion-container">
               {values.map((item, index) => (
                 <div className="accordion-item" key={index}>

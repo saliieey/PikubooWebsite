@@ -98,34 +98,6 @@ const Shop = () => {
         </div>
       </section>
 
-      {/* Community CTA Section */}
-      <section className="shop-whatsapp-section">
-        <div className="container">
-          <div className="text-center" style={{ marginBottom: '2rem' }}>
-            <h2 className="shop-whatsapp-heading">Stay Updated With Pikuboo</h2>
-            <p className="shop-whatsapp-description">
-              Join our WhatsApp community to get the latest product updates, offers, and important news. Ideal for mothers, retailers, and wholesale partners.
-            </p>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div className="shop-whatsapp-card text-center">
-              <div className="shop-whatsapp-icon mb-3">
-                <img src="/images/community-icon-shop-page.png" alt="WhatsApp Icon" style={{ width: '40px' }} />
-              </div>
-              <h4 className="shop-whatsapp-title">Join Our WhatsApp Community</h4>
-              <p className="shop-whatsapp-text">
-                Be the first to know about new products, deals, and announcements.
-              </p>
-              <a href="https://wa.me/917012941992" target="_blank" rel="noopener noreferrer" className="btn-primary whatsapp-btn">
-                <img src="/images/whatsapp-icon-navbar.png" alt="WhatsApp" style={{ width: '20px', marginRight: '8px' }} />
-                Join Community
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <style>{`
         /* Shop Hero Section */
         .shop-hero-section {
@@ -320,51 +292,6 @@ const Shop = () => {
         }
         .buy-btn:hover img {
           transform: translateY(-3px);
-        }
-
-        /* WhatsApp Section */
-        .shop-whatsapp-section {
-          padding: 4rem 1rem 6rem;
-          background-color: var(--bg-main);
-        }
-        .shop-whatsapp-heading {
-          font-size: 2.2rem;
-          font-weight: 800;
-          color: var(--text-dark);
-          margin-bottom: 1rem;
-        }
-        .shop-whatsapp-description {
-          font-size: 1.1rem;
-          color: var(--text-body);
-          max-width: 600px;
-          margin: 0 auto;
-          line-height: 1.7;
-        }
-        .shop-whatsapp-card {
-          background: white;
-          padding: 3rem;
-          border-radius: var(--radius-lg);
-          box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-          max-width: 500px;
-          width: 100%;
-        }
-        .shop-whatsapp-title {
-          font-size: 1.4rem;
-          font-weight: 700;
-          margin-bottom: 0.5rem;
-          color: var(--text-dark);
-        }
-        .shop-whatsapp-text {
-          color: var(--text-body);
-          margin-bottom: 2rem;
-        }
-        .whatsapp-btn {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 12px 28px;
-          font-weight: 600;
-          border-radius: 50px;
         }
 
         /* Responsive Overrides */

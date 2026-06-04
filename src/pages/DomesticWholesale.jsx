@@ -223,7 +223,7 @@ const DomesticWholesale = () => {
             <div>
               <h1 className="hero-title">Cloth Diaper Wholesale Supplier in India</h1>
               <p className="section-desc">
-                We are a leading wholesale cloth diaper supplier based in Kochi, Kerala, India. Our products are high quality, safe, and made from certified materials that parents trust nationally. Along with our cloth diapers, we are expanding into multiple other baby products to accommodate your growth as a baby business. We deliver India-wide with rapid shipping. Unbeatable prices for bulk orders, flexible rebrand options, safety certifications, consistent quality, and best-in-market value make us the easiest decision you can make to grow your wholesale business with trusted products loved by parents nationwide!
+                We are a leading wholesale cloth diaper supplier based in Kochi, Kerala, India. Our products are high quality, safe, and made from premium materials that parents trust nationally. Along with our cloth diapers, we are expanding into multiple other baby products to accommodate your growth as a baby business. We deliver India-wide with rapid shipping. Unbeatable prices for bulk orders, flexible rebrand options, strict quality standards, consistent quality, and best-in-market value make us the easiest decision you can make to grow your wholesale business with trusted products loved by parents nationwide!
               </p>
               <Link to="/contact" className="btn-primary" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 'var(--radius-pill)', textDecoration: 'none' }}>
                 Get Wholesale Prices
@@ -255,10 +255,10 @@ const DomesticWholesale = () => {
             <div>
               <h2 className="section-title">Wholesale Cloth Diapers & More</h2>
               <p className="section-desc">
-                We offer high-quality cloth diapers and baby products at the cheapest wholesale prices in India. We use premium certified materials, you have beautiful rebranding options, and we can guarantee delivery throughout India. You will outperform your competition with us. You provide value for your customers, while we provide the quality, long-term sustainability, and a trusted source.
+                We offer high-quality cloth diapers and baby products at the cheapest wholesale prices in India. We use premium materials, you have beautiful rebranding options, and we can guarantee delivery throughout India. You will outperform your competition with us. You provide value for your customers, while we provide the quality, long-term sustainability, and a trusted source.
               </p>
               <ul className="feature-list">
-                <li><Check size={20} className="feature-icon" /> Premium certified materials for baby safety.</li>
+                <li><Check size={20} className="feature-icon" /> Premium materials for baby safety.</li>
                 <li><Check size={20} className="feature-icon" /> Competitive wholesale pricing & bulk discounts.</li>
                 <li><Check size={20} className="feature-icon" /> White-label / rebranding options available.</li>
                 <li><Check size={20} className="feature-icon" /> Fast, reliable shipping across India.</li>
@@ -288,7 +288,7 @@ const DomesticWholesale = () => {
               <div className="how-number">1</div>
               <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Bulk Manufacturing</h3>
               <p style={{ color: 'var(--text-body)', lineHeight: 1.7 }}>
-                We offer you quality cloth diapers supplied in bulk at the highest possible grade. All our cloth diapers are made in bulk from the best material and certified safe. All our cloth diapers will be supplied to you without our branding, leaving you complete flexibility to brand for your company or label. All your orders will be distilled from the bulk manufacturing process that satisfies your quality standards and wholesale quantity.
+                We offer you quality cloth diapers supplied in bulk at the highest possible grade. All our cloth diapers are made in bulk from the best material and thoroughly tested for safety. All our cloth diapers will be supplied to you without our branding, leaving you complete flexibility to brand for your company or label. All your orders will be distilled from the bulk manufacturing process that satisfies your quality standards and wholesale quantity.
               </p>
             </div>
             <div className="how-card">

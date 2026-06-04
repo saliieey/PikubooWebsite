@@ -242,7 +242,7 @@ const IntlWholesale = () => {
                 <li><Check size={20} className="feature-icon" /> Attractive bulk discounts on large orders.</li>
                 <li><Check size={20} className="feature-icon" /> Global shipping with customs clearance support.</li>
                 <li><Check size={20} className="feature-icon" /> Private label and personal branding options.</li>
-                <li><Check size={20} className="feature-icon" /> Certified quality meeting international standards.</li>
+                <li><Check size={20} className="feature-icon" /> Premium quality meeting international standards.</li>
                 <li><Check size={20} className="feature-icon" /> Sustainable and eco-friendly manufacturing.</li>
               </ul>
               <Link to="/shop" className="btn-primary" style={{ display: 'inline-block', padding: '14px 32px', borderRadius: 'var(--radius-pill)', textDecoration: 'none' }}>

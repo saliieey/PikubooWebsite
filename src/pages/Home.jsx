@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import ProductCard from '../components/ProductCard';
 import { client, urlFor } from '../sanityClient';
@@ -112,9 +113,9 @@ const Home = () => {
       <section style={{ padding: '2rem 0 4rem 0', backgroundColor: 'var(--bg-main)' }}>
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem' }}>
-            <button style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontWeight: 600, fontSize: '1rem', color: 'var(--text-dark)' }}>
+            <Link to="/shop#products" style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '6px', cursor: 'pointer', fontWeight: 600, fontSize: '1rem', color: 'var(--text-dark)' }}>
               View all <span style={{ backgroundColor: '#E0E0E0', borderRadius: '50%', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>›</span>
-            </button>
+            </Link>
           </div>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>

@@ -76,33 +76,11 @@ const WhyReusable = () => {
           font-weight: 700;
         }
 
-        /* WhatsApp Community Section */
-        .whatsapp-community-section {
-          padding: 6rem 1rem;
-          background-color: var(--bg-main);
-          border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        .whatsapp-community-card {
-          background-color: var(--bg-white);
-          padding: 4rem 3rem;
-          border-radius: var(--radius-lg);
-          text-align: center;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-          border: 1px solid rgba(0,0,0,0.04);
-          max-width: 500px;
-          width: 100%;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
         @media (max-width: 768px) {
           .why-hero-section { padding: 4rem 1rem 2rem !important; gap: 2rem !important; }
           .why-hero-text h1 { font-size: 2.2rem !important; }
           .why-content-wrapper h2 { font-size: 1.8rem !important; }
           .why-hero-img { min-height: 250px !important; }
-          .whatsapp-community-card { padding: 3rem 1.5rem; }
         }
       `}</style>
 
@@ -159,51 +137,6 @@ const WhyReusable = () => {
             <p>
               Reusable cloth diapering is more than just a fad—it is a commitment to a different lifestyle. Families will save money, reduce their impact on the environment, and provide better skin health for their babies. It is a small step that can do a lot for a child and the planet they will call home.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* WhatsApp Community Section */}
-      <section className="whatsapp-community-section">
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 4rem' }}>
-            <h2 style={{ fontSize: '2.5rem', color: 'var(--text-dark)', marginBottom: '1rem', fontWeight: 800 }}>
-              Stay Updated With Pikuboo
-            </h2>
-            <p style={{ color: 'var(--text-body)', fontSize: '1.15rem', lineHeight: '1.8' }}>
-              Join our WhatsApp community to get the latest product updates, offers, and important news. Ideal for mothers, retailers, and wholesale partners.
-            </p>
-          </div>
-
-          <div className="whatsapp-community-card">
-            <div style={{ 
-              width: '60px', 
-              height: '60px', 
-              backgroundColor: '#ffffff', 
-              borderRadius: '50%', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              marginBottom: '1.5rem',
-              boxShadow: '0 5px 15px rgba(0,0,0,0.1)'
-            }}>
-              <img src="/images/community-icon-shop-page.png" alt="Community Icon" style={{ width: '30px' }} />
-            </div>
-            <h3 style={{ fontSize: '1.5rem', color: 'var(--text-dark)', marginBottom: '1rem', fontWeight: 700 }}>
-              Join Our WhatsApp Community
-            </h3>
-            <p style={{ color: 'var(--text-body)', marginBottom: '2.5rem', fontSize: '1.05rem', lineHeight: '1.6' }}>
-              Be the first to know about new products, deals, and announcements.
-            </p>
-            <a 
-              href="https://chat.whatsapp.com/YourGroupLinkHere" 
-              target="_blank" 
-              rel="noreferrer"
-              className="btn-primary" 
-              style={{ display: 'inline-block', padding: '14px 40px', borderRadius: 'var(--radius-pill)', textDecoration: 'none', fontSize: '1.1rem' }}
-            >
-              Join Now
-            </a>
           </div>
         </div>
       </section>

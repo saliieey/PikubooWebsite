@@ -7,7 +7,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Are cloth diapers better for baby?",
-      answer: "Of course cloth diapers are better for babies. They are soft, breathable, and chemical-free. Pikuboo cotton diapers are made from premium certified fabric, which means your baby’s skin is safe and rash-free from beginning to end. They are gentle, reusable, and healthier than disposables containing harmful chemicals."
+      answer: "Of course cloth diapers are better for babies. They are soft, breathable, and chemical-free. Pikuboo cotton diapers are made from premium soft fabric, which means your baby’s skin is safe and rash-free from beginning to end. They are gentle, reusable, and healthier than disposables containing harmful chemicals."
     },
     {
       question: "Why cloth diapers are better than disposable diapers?",
@@ -23,7 +23,7 @@ const FAQ = () => {
     },
     {
       question: "What cloth diapers are best?",
-      answer: "The best cloth diaper will be soft, absorbent, and safe for sensitive skin. Pikuboo diapers are all eco-friendly cloth diapers, made with GOTS-certified cotton and high-quality inserts that will protect against leaks. They are reusable and cost-effective and also serve the purpose of being the most comfortable diapers for babies while being responsible for the planet."
+      answer: "The best cloth diaper will be soft, absorbent, and safe for sensitive skin. Pikuboo diapers are all eco-friendly cloth diapers. They are reusable and cost-effective and also serve the purpose of being the most comfortable diapers for babies while being responsible for the planet."
     },
     {
       question: "Cloth diapers with inserts",
@@ -43,7 +43,7 @@ const FAQ = () => {
     },
     {
       question: "Is Pikuboo a trusted wholesale supplier of cloth diapers?",
-      answer: "Yes, Pikuboo is a reputable manufacturer and wholesale provider of eco-friendly diapers from Kochi, Kerala. We supply certified cotton diapers to retailers, wholesalers, and parents around the world. Our diapers are renowned for quality and safety on all sustainable diapers, so when partnered with bulk orders and all eco-friendly baby care solutions, we are your trusted partner."
+      answer: "Yes, Pikuboo is a reputable manufacturer and wholesale provider of eco-friendly diapers from Kochi, Kerala. We supply premium cotton diapers to retailers, wholesalers, and parents around the world. Our diapers are renowned for quality and safety on all sustainable diapers, so when partnered with bulk orders and all eco-friendly baby care solutions, we are your trusted partner."
     }
   ];
 
