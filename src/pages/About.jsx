@@ -171,11 +171,10 @@ const About = () => {
           font-weight: 500;
         }
         .ceo-profile-img {
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          object-fit: cover;
+          height: 50px;
+          object-fit: contain;
           margin: 0 auto 1rem auto;
+          display: block;
         }
 
         /* Responsive Overrides */
@@ -329,8 +328,8 @@ const About = () => {
             "We know sustainability today can feel overwhelming and expensive. Pikuboo was created to bridge that gap—so more parents can choose comfort and care that’s better for their baby and the planet."
           </p>
           <div>
-            <img src="/images/siddarth-mathew-jacob-CEO-about-us-page.png" alt="Siddarth Mathew Jacob" className="ceo-profile-img" />
-            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>Siddarth Mathew Jacob</h4>
+            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" className="ceo-profile-img" />
+            <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>Aishwarya Urmila Bhaktha</h4>
             <p style={{ color: 'var(--text-light)', fontSize: '0.95rem' }}>CEO of Pikuboo</p>
           </div>
         </div>

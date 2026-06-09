@@ -35,21 +35,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'bgColor',
-      title: 'Background Color CSS Variable',
-      type: 'string',
-      description: 'e.g., var(--bg-card-1)',
-      options: {
-        list: [
-          { title: 'Purple (card-1)', value: 'var(--bg-card-1)' },
-          { title: 'Pink (card-2)', value: 'var(--bg-card-2)' },
-          { title: 'Teal (card-3)', value: 'var(--bg-card-3)' },
-          { title: 'Yellow (card-4)', value: 'var(--bg-card-4)' },
-        ],
-      },
-      validation: (Rule) => Rule.required(),
-    },
-    {
       name: 'images',
       title: 'Product Images',
       type: 'array',

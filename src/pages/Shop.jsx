@@ -20,7 +20,6 @@ const Shop = () => {
           rating: item.rating.toString(),
           reviewsCount: item.reviewsCount || 0,
           size: item.size || 'Free Size',
-          bgColor: item.bgColor,
           images: item.images ? item.images.map(img => urlFor(img).url()) : [],
           amazonLink: item.amazonLink,
           flipkartLink: item.flipkartLink
@@ -191,7 +190,8 @@ const Shop = () => {
           width: 100%;
           border-radius: var(--radius-md);
           overflow: hidden;
-          background-color: var(--bg-card-1);
+          background-color: var(--bg-white);
+          border: 1px solid rgba(0,0,0,0.05);
           aspect-ratio: 1/1;
         }
         .carousel-wrapper {
@@ -328,9 +328,7 @@ const Shop = () => {
           .product-card-grid {
             gap: 1.5rem;
           }
-          .product-carousel-container {
-            aspect-ratio: 4/3; /* Less vertical height on mobile */
-          }
+
           .product-price {
             font-size: 1.5rem;
             margin-bottom: 1rem;

@@ -5,12 +5,6 @@ import ProductCard from '../components/ProductCard';
 import { client, urlFor } from '../sanityClient';
 
 const Home = () => {
-  const categories = [
-    { name: 'Yellow', image: '/images/pikuboo-cloth-diaper-yellow.png', color: 'var(--bg-card-1)' },
-    { name: 'Green', image: '/images/pikuboo-cloth-diaper-green.png', color: 'var(--bg-card-3)' },
-    { name: 'Red', image: '/images/pikuboo-cloth-diaper-red.png', color: 'var(--bg-card-2)' },
-    { name: 'Blue', image: '/images/pikuboo-cloth-diaper-blue.png', color: 'var(--bg-card-4)' }
-  ];
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +20,6 @@ const Home = () => {
           price: item.price ? item.price.toString() : '799',
           rating: item.rating ? item.rating.toString() : '4.8',
           image: item.images && item.images.length > 0 ? urlFor(item.images[0]).url() : '/images/pikuboo-cloth-diaper-yellow.png',
-          bgColor: item.bgColor || 'var(--bg-card-1)',
           amazonLink: item.amazonLink,
           flipkartLink: item.flipkartLink
         }));
@@ -54,9 +47,16 @@ const Home = () => {
         <title>Pikuboo | Soft Reusable Diapers for Happy Babies</title>
       </Helmet>
 
-      {/* Hero Image Section */}
+      {/* Hero Video Section */}
       <section className="hero-section" style={{ width: '100%', backgroundColor: '#E3D4CF', position: 'relative', overflow: 'hidden' }}>
-        <img src="/images/Untitled design (40).png" alt="Pikuboo Hero" className="hero-image" />
+        <video 
+          className="hero-video"
+          src="/images/home-page-banner-landscape.mp4" 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+        />
       </section>
 
       {/* Wavy Marquee - Mathematically Perfect Alignment */}
@@ -81,23 +81,6 @@ const Home = () => {
         </svg>
       </div>
 
-      {/* Top Picks / Categories Section */}
-      <section style={{ padding: '4rem 0 3rem 0', backgroundColor: 'var(--bg-main)' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-          <h2 style={{ fontSize: '2.25rem', marginBottom: '2.5rem' }}>Shop By Color</h2>
-          
-          <div style={{ display: 'flex', justifyItems: 'center', justifyContent: 'center', gap: '3rem', flexWrap: 'wrap' }}>
-            {categories.map((cat, idx) => (
-              <div key={idx} className="circular-category">
-                <div className="circular-image-wrapper" style={{ backgroundColor: cat.color }}>
-                  <img src={cat.image} alt={cat.name} />
-                </div>
-                <span className="circular-title">{cat.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Our Products Introduction */}
       <section style={{ padding: '3rem 0 1rem 0', backgroundColor: 'var(--bg-main)' }}>

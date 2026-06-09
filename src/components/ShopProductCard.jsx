@@ -42,7 +42,7 @@ const ShopProductCard = ({ product }) => {
                   pointerEvents: idx === currentSlide ? 'auto' : 'none'
                 }}
               >
-                <img src={image} alt={`${product.title} image ${idx + 1}`} style={{ maxWidth: '100%', maxHeight: '400px', objectFit: 'contain' }} />
+                <img src={image} alt={`${product.title} image ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
             ))}
           </div>

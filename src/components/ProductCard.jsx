@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const ProductCard = ({ title, price, image, rating, bgColor, amazonLink, flipkartLink }) => {
+const ProductCard = ({ title, price, image, rating, amazonLink, flipkartLink }) => {
   const handleBuyClick = () => {
     if (amazonLink) {
       window.open(amazonLink, '_blank');
@@ -25,15 +25,17 @@ const ProductCard = ({ title, price, image, rating, bgColor, amazonLink, flipkar
     >
       <div style={{ 
         width: '100%',
-        backgroundColor: bgColor || 'var(--bg-card-1)', 
+        backgroundColor: 'var(--bg-white)', 
         borderRadius: 'var(--radius-md)', 
         position: 'relative',
         marginBottom: '1rem',
         paddingTop: '100%', /* Foolproof 1:1 Aspect Ratio */
+        overflow: 'hidden',
+        border: '1px solid rgba(0,0,0,0.05)'
       }}>
-        {/* Inner image container with fixed padding from edges */}
-        <div style={{ position: 'absolute', top: '15%', left: '15%', right: '15%', bottom: '15%' }}>
-          <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }} />
+        {/* Inner image container filling the square completely */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+          <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
         </div>
         
         {/* Floating Rating Badge */}
