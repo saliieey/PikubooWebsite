@@ -20,7 +20,8 @@ const Shop = () => {
           rating: item.rating.toString(),
           reviewsCount: item.reviewsCount || 0,
           size: item.size || 'Free Size',
-          images: item.images ? item.images.map(img => urlFor(img).url()) : [],
+          // Optimize product images fetched from Sanity: resize to 600x600, auto format, quality 80
+          images: item.images ? item.images.map(img => urlFor(img).width(600).height(600).auto('format').quality(80).url()) : [],
           amazonLink: item.amazonLink,
           flipkartLink: item.flipkartLink
         }));
@@ -54,15 +55,15 @@ const Shop = () => {
               </p>
               <div className="shop-hero-actions">
                 <a href="#products">
-                  <img src="/images/amazon-icon-shop-page.png" alt="Buy on Amazon" className="shop-hero-btn-img" />
+                  <img src="/images/amazon-icon-shop-page.png" alt="Buy on Amazon" className="shop-hero-btn-img" decoding="async" />
                 </a>
                 <a href="#products">
-                  <img src="/images/flipkart-icon-shop-page.png" alt="Buy on Flipkart" className="shop-hero-btn-img" />
+                  <img src="/images/flipkart-icon-shop-page.png" alt="Buy on Flipkart" className="shop-hero-btn-img" decoding="async" />
                 </a>
               </div>
             </div>
             <div className="shop-hero-image-col">
-              <img src="/images/cart-image-hero-component-shop-page.png" alt="Pikuboo Shop Cart" className="shop-hero-img" />
+              <img src="/images/cart-image-hero-component-shop-page.png" alt="Pikuboo Shop Cart" className="shop-hero-img" fetchpriority="high" decoding="async" />
             </div>
           </div>
         </div>

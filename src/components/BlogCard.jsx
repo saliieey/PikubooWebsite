@@ -25,7 +25,7 @@ const BlogCard = ({ post }) => {
       <div style={{ position: 'relative', width: '100%', paddingTop: '65%', overflow: 'hidden' }}>
         {post.mainImage && (
           <img 
-            src={urlFor(post.mainImage).width(600).height(400).url()} 
+            src={urlFor(post.mainImage).width(600).height(400).auto('format').quality(80).url()} 
             alt={post.title}
             style={{
               position: 'absolute',
@@ -36,6 +36,8 @@ const BlogCard = ({ post }) => {
               objectFit: 'cover',
               transition: 'transform 0.5s ease'
             }}
+            loading="lazy"
+            decoding="async"
             className="blog-card-image"
           />
         )}

@@ -1,18 +1,21 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import About from './pages/About';
-import WhyReusable from './pages/WhyReusable';
-import DomesticWholesale from './pages/DomesticWholesale';
-import IntlWholesale from './pages/IntlWholesale';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import Contact from './pages/Contact';
-import FAQ from './pages/FAQ';
 import './App.css';
+
+// Lazy load page components for better initial bundle size and speed
+const Home = lazy(() => import('./pages/Home'));
+const Shop = lazy(() => import('./pages/Shop'));
+const About = lazy(() => import('./pages/About'));
+const WhyReusable = lazy(() => import('./pages/WhyReusable'));
+const DomesticWholesale = lazy(() => import('./pages/DomesticWholesale'));
+const IntlWholesale = lazy(() => import('./pages/IntlWholesale'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const Contact = lazy(() => import('./pages/Contact'));
+const FAQ = lazy(() => import('./pages/FAQ'));
 
 function App() {
   return (
@@ -21,23 +24,29 @@ function App() {
       <Navbar />
 
       <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/why-reusable" element={<WhyReusable />} />
-          <Route path="/domestic-wholesale" element={<DomesticWholesale />} />
-          <Route path="/international-wholesale" element={<IntlWholesale />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          {/* Fallback routes for links */}
-          <Route path="/wholesale" element={<Shop />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/privacy-policy" element={<About />} />
-          <Route path="/terms-and-conditions" element={<About />} />
-          <Route path="/refund-policy" element={<About />} />
-        </Routes>
+        <Suspense fallback={
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+            <div className="spinner"></div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/why-reusable" element={<WhyReusable />} />
+            <Route path="/domestic-wholesale" element={<DomesticWholesale />} />
+            <Route path="/international-wholesale" element={<IntlWholesale />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            {/* Fallback routes for links */}
+            <Route path="/wholesale" element={<Shop />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<About />} />
+            <Route path="/terms-and-conditions" element={<About />} />
+            <Route path="/refund-policy" element={<About />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <Footer />

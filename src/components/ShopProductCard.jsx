@@ -42,7 +42,13 @@ const ShopProductCard = ({ product }) => {
                   pointerEvents: idx === currentSlide ? 'auto' : 'none'
                 }}
               >
-                <img src={image} alt={`${product.title} image ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                <img 
+                  src={image} 
+                  alt={`${product.title} image ${idx + 1}`} 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} 
+                  loading={idx === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                />
               </div>
             ))}
           </div>
@@ -79,12 +85,12 @@ const ShopProductCard = ({ product }) => {
           <div className="product-actions">
             {product.amazonLink && (
               <a href={product.amazonLink} target="_blank" rel="noopener noreferrer" className="buy-btn">
-                <img src="/images/amazon-icon-shop-page.png" alt="Buy on Amazon" />
+                <img src="/images/amazon-icon-shop-page.png" alt="Buy on Amazon" loading="lazy" decoding="async" />
               </a>
             )}
             {product.flipkartLink && (
               <a href={product.flipkartLink} target="_blank" rel="noopener noreferrer" className="buy-btn">
-                <img src="/images/flipkart-icon-shop-page.png" alt="Buy on Flipkart" />
+                <img src="/images/flipkart-icon-shop-page.png" alt="Buy on Flipkart" loading="lazy" decoding="async" />
               </a>
             )}
           </div>

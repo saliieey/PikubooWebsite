@@ -30,7 +30,7 @@ const Navbar = () => {
 
         {/* Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'center' }} className="nav-logo-container">
-          <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo" style={{ height: '45px', objectFit: 'contain' }} />
+          <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo" style={{ height: '45px', objectFit: 'contain' }} decoding="async" />
         </Link>
 
         {/* Desktop Nav */}

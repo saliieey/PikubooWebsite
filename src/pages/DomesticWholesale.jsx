@@ -230,7 +230,7 @@ const DomesticWholesale = () => {
               </Link>
             </div>
             <div>
-              <img src="/images/domestic-wholesale-cover-image.png" alt="Wholesale Cover" className="hero-img" />
+              <img src="/images/domestic-wholesale-cover-image.png" alt="Wholesale Cover" className="hero-img" decoding="async" />
             </div>
           </div>
         </div>
@@ -244,7 +244,7 @@ const DomesticWholesale = () => {
             <div className="carousel-container">
               {slides.map((slide, idx) => (
                 <div key={idx} className={`carousel-slide ${idx === currentSlide ? 'active' : ''}`}>
-                  <img src={slide} alt={`Product ${idx + 1}`} />
+                  <img src={slide} alt={`Product ${idx + 1}`} loading={idx === 0 ? "eager" : "lazy"} decoding="async" />
                 </div>
               ))}
               <button className="carousel-btn prev" onClick={prevSlide}><ChevronLeft size={24} /></button>
@@ -323,7 +323,7 @@ const DomesticWholesale = () => {
               </Link>
             </div>
             <div>
-              <img src="/images/pikuboo-price-tags-wholesale-page.png" alt="Who We Are" className="hero-img" style={{ mixBlendMode: 'multiply' }} />
+              <img src="/images/pikuboo-price-tags-wholesale-page.png" alt="Who We Are" className="hero-img" style={{ mixBlendMode: 'multiply' }} loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -334,7 +334,7 @@ const DomesticWholesale = () => {
         <div className="container">
           <div className="two-col-grid reverse-mobile">
             <div>
-              <img src="/images/baby-photo-in-pikuboo-cloth-diaper.png" alt="Why Choose Us" className="hero-img" />
+              <img src="/images/baby-photo-in-pikuboo-cloth-diaper.png" alt="Why Choose Us" className="hero-img" loading="lazy" decoding="async" />
             </div>
             <div>
               <h2 className="section-title">Why Choose Us</h2>
@@ -358,7 +358,7 @@ const DomesticWholesale = () => {
 
           <div className="contact-grid">
             <div className="contact-card">
-              <img src="/images/email-icon-contact-pikuboo-page.png" alt="Email" style={{ width: '40px', margin: '0 auto 1rem auto' }} />
+              <img src="/images/email-icon-contact-pikuboo-page.png" alt="Email" style={{ width: '40px', margin: '0 auto 1rem auto' }} loading="lazy" decoding="async" />
               <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Email Us</h4>
               <p style={{ color: 'var(--text-body)', marginBottom: '1.5rem' }}>info@pikuboo.com</p>
               <a href="mailto:info@pikuboo.com" className="btn-primary" style={{ display: 'inline-block', padding: '10px 24px', borderRadius: 'var(--radius-pill)', textDecoration: 'none', backgroundColor: 'var(--bg-white)', color: 'var(--primary)', border: '1px solid var(--primary)' }}>
@@ -367,7 +367,7 @@ const DomesticWholesale = () => {
             </div>
             
             <div className="contact-card">
-              <img src="/images/phone-icon-contact-pikuboo-page.png" alt="Phone" style={{ width: '40px', margin: '0 auto 1rem auto' }} />
+              <img src="/images/phone-icon-contact-pikuboo-page.png" alt="Phone" style={{ width: '40px', margin: '0 auto 1rem auto' }} loading="lazy" decoding="async" />
               <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Call Us</h4>
               <p style={{ color: 'var(--text-body)', marginBottom: '1.5rem' }}>+91 98765 43210</p>
               <a href="tel:+919876543210" className="btn-primary" style={{ display: 'inline-block', padding: '10px 24px', borderRadius: 'var(--radius-pill)', textDecoration: 'none', backgroundColor: 'var(--bg-white)', color: 'var(--primary)', border: '1px solid var(--primary)' }}>
@@ -376,7 +376,7 @@ const DomesticWholesale = () => {
             </div>
 
             <div className="contact-card">
-              <img src="/images/location-icon-contact-pikuboo-page.png" alt="Location" style={{ width: '40px', margin: '0 auto 1rem auto' }} />
+              <img src="/images/location-icon-contact-pikuboo-page.png" alt="Location" style={{ width: '40px', margin: '0 auto 1rem auto' }} loading="lazy" decoding="async" />
               <h4 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Visit Us</h4>
               <p style={{ color: 'var(--text-body)', marginBottom: '1.5rem' }}>123 Pikuboo Street, Kochi, Kerala</p>
               <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="btn-primary" style={{ display: 'inline-block', padding: '10px 24px', borderRadius: 'var(--radius-pill)', textDecoration: 'none', backgroundColor: 'var(--bg-white)', color: 'var(--primary)', border: '1px solid var(--primary)' }}>

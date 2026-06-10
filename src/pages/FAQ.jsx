@@ -69,7 +69,7 @@ const FAQ = () => {
         </div>
         <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ position: 'relative', width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <img src="/images/faq-right-image-faq-page.png" alt="Pikuboo FAQ" className="faq-hero-img" style={{ width: '100%', maxWidth: '450px', objectFit: 'contain' }} />
+            <img src="/images/faq-right-image-faq-page.png" alt="Pikuboo FAQ" className="faq-hero-img" style={{ width: '100%', maxWidth: '450px', objectFit: 'contain' }} decoding="async" />
           </div>
         </div>
       </section>
@@ -236,7 +236,7 @@ const FAQ = () => {
                 marginBottom: '1.5rem',
                 boxShadow: '0 5px 15px rgba(0,0,0,0.1)'
               }}>
-                <img src="/images/google-review-icon-faq-page.png" alt="Google Review" style={{ width: '30px' }} onError={(e) => { e.target.onerror = null; e.target.src = "https://cdn-icons-png.flaticon.com/512/2991/2991148.png"; }} />
+                <img src="/images/google-review-icon-faq-page.png" alt="Google Review" style={{ width: '30px' }} loading="lazy" decoding="async" onError={(e) => { e.target.onerror = null; e.target.src = "https://cdn-icons-png.flaticon.com/512/2991/2991148.png"; }} />
               </div>
               <h3 style={{ fontSize: '1.8rem', color: 'var(--text-dark)', marginBottom: '1rem', fontWeight: 700 }}>Post a Review</h3>
               <p style={{ color: 'var(--text-body)', marginBottom: '2.5rem', fontSize: '1.05rem', lineHeight: '1.6' }}>

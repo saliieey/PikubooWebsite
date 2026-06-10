@@ -35,7 +35,7 @@ const ProductCard = ({ title, price, image, rating, amazonLink, flipkartLink }) 
       }}>
         {/* Inner image container filling the square completely */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
-          <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" decoding="async" />
         </div>
         
         {/* Floating Rating Badge */}

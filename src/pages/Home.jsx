@@ -8,8 +8,14 @@ const Home = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [videoSrc, setVideoSrc] = useState('');
 
   useEffect(() => {
+    // Defer heavy video loading to prevent blocking page load
+    const timer = setTimeout(() => {
+      setVideoSrc('/images/home-page-banner-landscape.mp4');
+    }, 100);
+
     const fetchProducts = async () => {
       try {
         const query = `*[_type == "product"][0...4]`; // Fetch top 4 products for homepage
@@ -19,7 +25,10 @@ const Home = () => {
           title: item.title,
           price: item.price ? item.price.toString() : '799',
           rating: item.rating ? item.rating.toString() : '4.8',
-          image: item.images && item.images.length > 0 ? urlFor(item.images[0]).url() : '/images/pikuboo-cloth-diaper-yellow.png',
+          // Optimize Sanity images: resize to 400x400, auto-format to WebP/AVIF, quality 80
+          image: item.images && item.images.length > 0 
+            ? urlFor(item.images[0]).width(400).height(400).auto('format').quality(80).url() 
+            : '/images/pikuboo-cloth-diaper-yellow.png',
           amazonLink: item.amazonLink,
           flipkartLink: item.flipkartLink
         }));
@@ -32,6 +41,7 @@ const Home = () => {
     };
 
     fetchProducts();
+    return () => clearTimeout(timer);
   }, []);
 
   const features = [
@@ -49,14 +59,17 @@ const Home = () => {
 
       {/* Hero Video Section */}
       <section className="hero-section" style={{ width: '100%', backgroundColor: '#E3D4CF', position: 'relative', overflow: 'hidden' }}>
-        <video 
-          className="hero-video"
-          src="/images/home-page-banner-landscape.mp4" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-        />
+        {videoSrc && (
+          <video 
+            className="hero-video"
+            src={videoSrc} 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            preload="none"
+          />
+        )}
       </section>
 
       {/* Wavy Marquee - Mathematically Perfect Alignment */}
@@ -133,7 +146,7 @@ const Home = () => {
             {features.map((feature, index) => (
               <div key={index} style={{ padding: '2rem', borderRadius: 'var(--radius-lg)', backgroundColor: 'var(--bg-main)', textAlign: 'center' }}>
                 <div style={{ width: '60px', height: '60px', backgroundColor: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto', boxShadow: 'var(--shadow-soft)' }}>
-                  <img src={feature.icon} alt={feature.title} style={{ width: '30px', height: '30px', objectFit: 'contain' }} onError={(e) => e.target.style.display='none'} />
+                  <img src={feature.icon} alt={feature.title} style={{ width: '30px', height: '30px', objectFit: 'contain' }} loading="lazy" decoding="async" onError={(e) => e.target.style.display='none'} />
                 </div>
                 <h3 style={{ fontSize: '1.15rem', marginBottom: '1rem', textAlign: 'center' }}>{feature.title}</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-light)', lineHeight: '1.6', textAlign: 'center' }}>{feature.desc}</p>

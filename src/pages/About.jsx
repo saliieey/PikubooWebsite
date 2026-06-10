@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Plus, Minus } from 'lucide-react';
 
 const About = () => {
   const [openIndex, setOpenIndex] = useState(0);
+  const [videoSrc, setVideoSrc] = useState('');
+
+  useEffect(() => {
+    // Defer heavy video loading to prevent blocking page load
+    const timer = setTimeout(() => {
+      setVideoSrc('/images/about-us-video.mp4');
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const values = [
     {
@@ -220,14 +229,17 @@ const About = () => {
         <div className="container">
           {/* Full-width Video Container matching navbar boundaries */}
           <div className="about-video-wrapper">
-            <video 
-              className="about-video-fg"
-              src="/images/about-us-video.mp4" 
-              autoPlay 
-              muted 
-              loop 
-              playsInline 
-            />
+            {videoSrc && (
+              <video 
+                className="about-video-fg"
+                src={videoSrc} 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                preload="none"
+              />
+            )}
           </div>
 
           {/* Text Content below the video */}
@@ -271,7 +283,7 @@ const About = () => {
 
           <div className="mission-vision-grid">
             <div className="mission-card">
-              <img src="/images/mission-icon-about-us-page.png" alt="Mission Icon" className="mission-icon" />
+              <img src="/images/mission-icon-about-us-page.png" alt="Mission Icon" className="mission-icon" loading="lazy" decoding="async" />
               <h3 style={{ marginBottom: '1rem' }}>Our Mission</h3>
               <p style={{ color: 'var(--text-body)', lineHeight: '1.7' }}>
                 Our mission is to reduce diaper waste by providing safe, sustainable washable diapers for every child. Our purpose is to enable parents to have eco-friendly options that protect babies health and our planet through design and quality.
@@ -279,7 +291,7 @@ const About = () => {
             </div>
 
             <div className="mission-card">
-              <img src="/images/vision-icon-about-us-page.png" alt="Vision Icon" className="mission-icon" />
+              <img src="/images/vision-icon-about-us-page.png" alt="Vision Icon" className="mission-icon" loading="lazy" decoding="async" />
               <h3 style={{ marginBottom: '1rem' }}>Our Vision</h3>
               <p style={{ color: 'var(--text-body)', lineHeight: '1.7' }}>
                 We envision a world where disposable diapers are replaced with cotton diapers, moving toward sustainable parenting as a common choice for families everywhere, and in the process we will help reduce waste while protecting future generations.
@@ -328,7 +340,7 @@ const About = () => {
             "We know sustainability today can feel overwhelming and expensive. Pikuboo was created to bridge that gap—so more parents can choose comfort and care that’s better for their baby and the planet."
           </p>
           <div>
-            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" className="ceo-profile-img" />
+            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" className="ceo-profile-img" loading="lazy" decoding="async" />
             <h4 style={{ fontSize: '1.2rem', marginBottom: '0.2rem' }}>Aishwarya Urmila Bhaktha</h4>
             <p style={{ color: 'var(--text-light)', fontSize: '0.95rem' }}>CEO of Pikuboo</p>
           </div>

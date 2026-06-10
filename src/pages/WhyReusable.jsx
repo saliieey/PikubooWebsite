@@ -95,7 +95,7 @@ const WhyReusable = () => {
               </p>
             </div>
             <div className="why-hero-img-wrapper">
-              <img src="/images/safe-icon-why-choose-page-pikuboo.png" alt="Safe Shield Icon" className="why-hero-img" />
+              <img src="/images/safe-icon-why-choose-page-pikuboo.png" alt="Safe Shield Icon" className="why-hero-img" decoding="async" />
             </div>
           </div>
         </div>

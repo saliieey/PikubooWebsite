@@ -24,7 +24,7 @@ const Contact = () => {
           </button>
         </div>
         <div style={{ height: '100%', display: 'flex', alignItems: 'center' }}>
-          <img src="/images/Untitled design (29).png" alt="Pikuboo Storefront" className="hero-img" style={{ width: '100%', borderRadius: 'var(--radius-lg)', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', objectFit: 'cover', minHeight: '500px' }} />
+          <img src="/images/Untitled design (29).png" alt="Pikuboo Storefront" className="hero-img" style={{ width: '100%', borderRadius: 'var(--radius-lg)', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', objectFit: 'cover', minHeight: '500px' }} decoding="async" />
         </div>
       </section>
 
@@ -111,7 +111,7 @@ const Contact = () => {
             
             {/* Review 1 */}
             <div style={{ textAlign: 'center' }}>
-              <img src="/images/priya-menon-g-review.png" alt="Meera S" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} />
+              <img src="/images/priya-menon-g-review.png" alt="Meera S" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} loading="lazy" decoding="async" />
               <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Meera S</h4>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
                 {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="#FFC107" color="#FFC107" />)}
@@ -123,7 +123,7 @@ const Contact = () => {
 
             {/* Review 2 */}
             <div style={{ textAlign: 'center' }}>
-              <img src="/images/ravi-gupta-g-review.jpeg" alt="Rahul N" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} />
+              <img src="/images/ravi-gupta-g-review.jpeg" alt="Rahul N" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} loading="lazy" decoding="async" />
               <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Rahul N</h4>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
                 {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="#FFC107" color="#FFC107" />)}
@@ -135,7 +135,7 @@ const Contact = () => {
 
             {/* Review 3 */}
             <div style={{ textAlign: 'center' }}>
-              <img src="/images/anil-sharma-g-review.png" alt="Ananya T" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} />
+              <img src="/images/anil-sharma-g-review.png" alt="Ananya T" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} loading="lazy" decoding="async" />
               <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Ananya T</h4>
               <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
                 {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="#FFC107" color="#FFC107" />)}

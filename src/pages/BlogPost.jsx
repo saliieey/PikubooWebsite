@@ -16,8 +16,10 @@ const components = {
         <div style={{ margin: '3rem 0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
           <img
             alt={value.alt || 'Blog image'}
-            src={urlFor(value).width(1000).auto('format').url()}
+            src={urlFor(value).width(1000).auto('format').quality(80).url()}
             style={{ width: '100%', height: 'auto', display: 'block' }}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       );
@@ -168,7 +170,7 @@ const BlogPost = () => {
         {post.mainImage && (
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem', marginBottom: '4rem' }}>
             <img 
-              src={urlFor(post.mainImage).width(1200).height(675).url()} 
+              src={urlFor(post.mainImage).width(1200).height(675).auto('format').quality(80).url()} 
               alt={post.title}
               style={{
                 width: '100%',
@@ -177,6 +179,7 @@ const BlogPost = () => {
                 boxShadow: 'var(--shadow-md)',
                 objectFit: 'cover'
               }}
+              decoding="async"
             />
           </div>
         )}

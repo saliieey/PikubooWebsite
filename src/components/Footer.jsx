@@ -9,7 +9,7 @@ const Footer = () => {
           
           {/* Brand Info */}
           <div>
-            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} />
+            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} loading="lazy" decoding="async" />
             <p style={{ color: 'var(--text-body)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>
               Pikuboo is Kerala's reliable manufacturer of quality baby diapers, providing comfortable, eco-friendly, and economical diapering solutions to parents everywhere. Through quality and thoughtfulness, we make being a parent simple while reducing our impact on our planet. Start your path to smarter, greener, and happier baby care with us today!
             </p>
@@ -55,10 +55,10 @@ const Footer = () => {
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Buy Our Products From</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <a href="#" style={{ display: 'inline-block', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', padding: '8px', maxWidth: '140px', backgroundColor: 'white' }}>
-                <img src="/images/flipkart-logo-footer-icon.png" alt="Buy on Flipkart" style={{ width: '100%' }} />
+                <img src="/images/flipkart-logo-footer-icon.png" alt="Buy on Flipkart" style={{ width: '100%' }} loading="lazy" decoding="async" />
               </a>
               <a href="#" style={{ display: 'inline-block', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', padding: '8px', maxWidth: '140px', backgroundColor: 'white' }}>
-                <img src="/images/amazon-logo-footer-icon.png" alt="Buy on Amazon" style={{ width: '100%' }} />
+                <img src="/images/amazon-logo-footer-icon.png" alt="Buy on Amazon" style={{ width: '100%' }} loading="lazy" decoding="async" />
               </a>
             </div>
           </div>
