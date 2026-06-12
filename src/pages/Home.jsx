@@ -113,7 +113,7 @@ const Home = () => {
     
     setStatus({ submitting: true, success: false, error: null });
 
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const apiUrl = import.meta.env.VITE_API_URL || '';
 
     // Format fields correctly for the backend
     const submissionData = {
