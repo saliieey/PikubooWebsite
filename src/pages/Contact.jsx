@@ -1,6 +1,144 @@
+import React, { useState } from 'react';
 import { Send, ChevronDown, Mail, Phone, MapPin, Star } from 'lucide-react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    inquiryType: '',
+    company: '',
+    country: '',
+    message: '',
+    website_url: '' // Honeypot field for spam prevention
+  });
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState({
+    submitting: false,
+    success: false,
+    error: null
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: null
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full Name is required.';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email Address is required.';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email.trim())) {
+        newErrors.email = 'Please enter a valid email address.';
+      }
+    }
+    
+    if (!formData.inquiryType) {
+      newErrors.inquiryType = 'Please select an inquiry type.';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required.';
+    }
+    
+    if (formData.phone.trim()) {
+      const phoneRegex = /^[0-9+\s()\-]{7,20}$/;
+      if (!phoneRegex.test(formData.phone.trim())) {
+        newErrors.phone = 'Please enter a valid phone number.';
+      }
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // 1. Honeypot check: If bot filled website_url, block send, simulate success
+    if (formData.website_url) {
+      console.log('Spam bot detected via honeypot.');
+      setStatus({ submitting: false, success: true, error: null });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        inquiryType: '',
+        company: '',
+        country: '',
+        message: '',
+        website_url: ''
+      });
+      setErrors({});
+      return;
+    }
+
+    // 2. Validate fields
+    if (!validateForm()) {
+      setStatus({ submitting: false, success: false, error: 'Please correct the highlighted errors.' });
+      return;
+    }
+    
+    setStatus({ submitting: true, success: false, error: null });
+
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+    try {
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatus({ submitting: false, success: true, error: null });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          inquiryType: '',
+          company: '',
+          country: '',
+          message: '',
+          website_url: ''
+        });
+        setErrors({});
+      } else {
+        setStatus({ 
+          submitting: false, 
+          success: false, 
+          error: result.message || 'Something went wrong. Please try again.' 
+        });
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setStatus({ 
+        submitting: false, 
+        success: false, 
+        error: 'Failed to connect to the email server. Please try again later.' 
+      });
+    }
+  };
   return (
     <div style={{ backgroundColor: 'var(--bg-main)', minHeight: '100vh' }}>
       
@@ -55,26 +193,168 @@ const Contact = () => {
 
           <div style={{ backgroundColor: 'white', padding: '5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '1px solid rgba(0,0,0,0.05)' }}>
             <h2 style={{ fontSize: '1.8rem', color: 'var(--text-dark)', marginBottom: '2.5rem', fontWeight: 800 }}>Contact Us</h2>
-            
-            <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <input type="text" placeholder="Full Name *" required style={inputStyle} onFocus={handleFocus} onBlur={handleBlur} />
-              <input type="email" placeholder="Email Address *" required style={inputStyle} onFocus={handleFocus} onBlur={handleBlur} />
-              <input type="tel" placeholder="Phone Number (Optional)" style={inputStyle} onFocus={handleFocus} onBlur={handleBlur} />
+            {status.success && (
+              <div style={{ padding: '12px 20px', backgroundColor: '#eef9eb', color: '#3c763d', borderRadius: 'var(--radius-sm)', marginBottom: '1.5rem', border: '1px solid #d6e9c6', fontWeight: 500, fontSize: '0.95rem' }}>
+                Thank you! Your enquiry has been sent successfully. We will get back to you shortly.
+              </div>
+            )}
+            {status.error && (
+              <div style={{ padding: '12px 20px', backgroundColor: '#fdf2f2', color: '#a94442', borderRadius: 'var(--radius-sm)', marginBottom: '1.5rem', border: '1px solid #ebccd1', fontWeight: 500, fontSize: '0.95rem' }}>
+                {status.error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+              <div>
+                <input 
+                  type="text" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Full Name *" 
+                  required 
+                  style={{
+                    ...inputStyle,
+                    borderColor: errors.name ? '#e53e3e' : 'var(--border-color)',
+                  }} 
+                  onFocus={handleFocus} 
+                  onBlur={handleBlur} 
+                />
+                {errors.name && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1rem' }}>{errors.name}</span>}
+              </div>
+
+              <div>
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Email Address *" 
+                  required 
+                  style={{
+                    ...inputStyle,
+                    borderColor: errors.email ? '#e53e3e' : 'var(--border-color)',
+                  }} 
+                  onFocus={handleFocus} 
+                  onBlur={handleBlur} 
+                />
+                {errors.email && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1rem' }}>{errors.email}</span>}
+              </div>
+
+              <div>
+                <input 
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Phone Number (Optional)" 
+                  style={{
+                    ...inputStyle,
+                    borderColor: errors.phone ? '#e53e3e' : 'var(--border-color)',
+                  }} 
+                  onFocus={handleFocus} 
+                  onBlur={handleBlur} 
+                />
+                {errors.phone && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1rem' }}>{errors.phone}</span>}
+              </div>
+
               <div style={{ position: 'relative' }}>
-                <select required style={{...inputStyle, appearance: 'none', color: 'var(--text-light)'}} onFocus={handleFocus} onBlur={handleBlur} onChange={(e) => e.target.style.color = 'var(--text-dark)'}>
-                  <option value="" disabled selected>Select Inquiry Type *</option>
+                <select 
+                  name="inquiryType"
+                  value={formData.inquiryType}
+                  required 
+                  style={{
+                    ...inputStyle, 
+                    appearance: 'none', 
+                    color: formData.inquiryType ? 'var(--text-dark)' : 'var(--text-light)',
+                    borderColor: errors.inquiryType ? '#e53e3e' : 'var(--border-color)',
+                  }} 
+                  onFocus={handleFocus} 
+                  onBlur={handleBlur} 
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>Select Inquiry Type *</option>
                   <option value="wholesale">Wholesale / Bulk Order</option>
                   <option value="distributor">Distributor Inquiry</option>
                   <option value="support">Customer Support</option>
                   <option value="other">Other</option>
                 </select>
                 <ChevronDown size={18} color="var(--text-light)" style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }} />
+                {errors.inquiryType && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1rem' }}>{errors.inquiryType}</span>}
               </div>
-              <input type="text" placeholder="Company Name (Optional)" style={inputStyle} onFocus={handleFocus} onBlur={handleBlur} />
-              <input type="text" placeholder="Country / Region" style={inputStyle} onFocus={handleFocus} onBlur={handleBlur} />
-              <textarea rows="4" placeholder="Your Message *" required style={{...inputStyle, resize: 'vertical', borderRadius: 'var(--radius-md)'}} onFocus={handleFocus} onBlur={handleBlur}></textarea>
-              <button className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '16px 32px', fontSize: '1.1rem', width: 'fit-content', marginTop: '1rem', borderRadius: 'var(--radius-pill)', alignSelf: 'flex-start' }}>
-                Send Message <Send size={18} />
+
+              {/* Honeypot field (hidden from users, filled by bots) */}
+              <input 
+                type="text" 
+                name="website_url" 
+                value={formData.website_url} 
+                onChange={handleChange} 
+                style={{ display: 'none' }} 
+                tabIndex="-1" 
+                autoComplete="off" 
+              />
+
+              <input 
+                type="text" 
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                placeholder="Company Name (Optional)" 
+                style={inputStyle} 
+                onFocus={handleFocus} 
+                onBlur={handleBlur} 
+              />
+              <input 
+                type="text" 
+                name="country"
+                value={formData.country}
+                onChange={handleChange}
+                placeholder="Country / Region" 
+                style={inputStyle} 
+                onFocus={handleFocus} 
+                onBlur={handleBlur} 
+              />
+              
+              <div>
+                <textarea 
+                  rows="4" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Your Message *" 
+                  required 
+                  style={{
+                    ...inputStyle, 
+                    resize: 'vertical', 
+                    borderRadius: 'var(--radius-md)',
+                    borderColor: errors.message ? '#e53e3e' : 'var(--border-color)',
+                  }} 
+                  onFocus={handleFocus} 
+                  onBlur={handleBlur}
+                ></textarea>
+                {errors.message && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1rem' }}>{errors.message}</span>}
+              </div>
+
+              <button 
+                type="submit"
+                disabled={status.submitting}
+                className="btn-primary" 
+                style={{ 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center', 
+                  gap: '8px', 
+                  padding: '16px 32px', 
+                  fontSize: '1.1rem', 
+                  width: 'fit-content', 
+                  marginTop: '1rem', 
+                  borderRadius: 'var(--radius-pill)', 
+                  alignSelf: 'flex-start',
+                  opacity: status.submitting ? 0.7 : 1,
+                  cursor: status.submitting ? 'not-allowed' : 'pointer'
+                }}
+              >
+                {status.submitting ? 'Sending...' : 'Send Message'} <Send size={18} />
               </button>
             </form>
           </div>

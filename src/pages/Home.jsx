@@ -10,6 +10,165 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [videoSrc, setVideoSrc] = useState('');
 
+  // Contact Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    inquiryType: '',
+    company: '',
+    country: '',
+    message: '',
+    agree: false,
+    website_url: '' // Honeypot field for spam prevention
+  });
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState({
+    submitting: false,
+    success: false,
+    error: null
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    
+    // Clear error when user types/changes
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: null
+      }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = 'Full Name is required.';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email Address is required.';
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email.trim())) {
+        newErrors.email = 'Please enter a valid email address.';
+      }
+    }
+    
+    if (!formData.inquiryType) {
+      newErrors.inquiryType = 'Please select an inquiry type.';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required.';
+    }
+
+    if (!formData.agree) {
+      newErrors.agree = 'You must agree to be contacted.';
+    }
+    
+    if (formData.phone.trim()) {
+      const phoneRegex = /^[0-9+\s()\-]{7,20}$/;
+      if (!phoneRegex.test(formData.phone.trim())) {
+        newErrors.phone = 'Please enter a valid phone number.';
+      }
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // 1. Honeypot check: If bot filled website_url, block send, simulate success
+    if (formData.website_url) {
+      console.log('Spam bot detected via honeypot on homepage.');
+      setStatus({ submitting: false, success: true, error: null });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        inquiryType: '',
+        company: '',
+        country: '',
+        message: '',
+        agree: false,
+        website_url: ''
+      });
+      setErrors({});
+      return;
+    }
+
+    // 2. Validate fields
+    if (!validateForm()) {
+      setStatus({ submitting: false, success: false, error: 'Please correct the highlighted errors.' });
+      return;
+    }
+    
+    setStatus({ submitting: true, success: false, error: null });
+
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+    // Format fields correctly for the backend
+    const submissionData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      inquiryType: formData.inquiryType,
+      company: formData.company,
+      country: formData.country,
+      message: formData.message,
+      website_url: formData.website_url
+    };
+
+    try {
+      const response = await fetch(`${apiUrl}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setStatus({ submitting: false, success: true, error: null });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          inquiryType: '',
+          company: '',
+          country: '',
+          message: '',
+          agree: false,
+          website_url: ''
+        });
+        setErrors({});
+      } else {
+        setStatus({ 
+          submitting: false, 
+          success: false, 
+          error: result.message || 'Something went wrong. Please try again.' 
+        });
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setStatus({ 
+        submitting: false, 
+        success: false, 
+        error: 'Failed to connect to the email server. Please try again later.' 
+      });
+    }
+  };
+
   useEffect(() => {
     // Defer heavy video loading to prevent blocking page load
     const timer = setTimeout(() => {
@@ -182,30 +341,189 @@ const Home = () => {
 
             <div style={{ flex: '1 1 400px', backgroundColor: 'white', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-soft)' }}>
               <h3 style={{ fontSize: '1.75rem', marginBottom: '2rem' }}>Contact Us</h3>
-              <form style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <input type="text" placeholder="Full Name *" style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem' }} />
-                <input type="email" placeholder="Email Address *" style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem' }} />
-                <input type="tel" placeholder="Phone Number (Optional)" style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem' }} />
-                
-                <select style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', color: 'var(--text-light)', appearance: 'none' }}>
-                  <option>Select Inquiry Type *</option>
-                  <option>Wholesale</option>
-                  <option>Retail</option>
-                  <option>Support</option>
-                </select>
-                
-                <input type="text" placeholder="Company Name (Optional)" style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem' }} />
-                <input type="text" placeholder="Country / Region" style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem' }} />
-                
-                <textarea placeholder="Your Message *" rows="4" style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-md)', border: '1px solid #E0E0E0', fontSize: '1rem', fontFamily: 'inherit', resize: 'none' }}></textarea>
-                
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                  <input type="checkbox" id="agree" style={{ marginTop: '5px' }} />
-                  <label htmlFor="agree" style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>I agree to be contacted regarding my inquiry.</label>
+              
+              {status.success && (
+                <div style={{ padding: '12px 20px', backgroundColor: '#eef9eb', color: '#3c763d', borderRadius: 'var(--radius-sm)', marginBottom: '1.5rem', border: '1px solid #d6e9c6', fontWeight: 500, fontSize: '0.95rem' }}>
+                  Thank you! Your enquiry has been sent successfully. We will get back to you shortly.
+                </div>
+              )}
+              {status.error && (
+                <div style={{ padding: '12px 20px', backgroundColor: '#fdf2f2', color: '#a94442', borderRadius: 'var(--radius-sm)', marginBottom: '1.5rem', border: '1px solid #ebccd1', fontWeight: 500, fontSize: '0.95rem' }}>
+                  {status.error}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                <div>
+                  <input 
+                    type="text" 
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Full Name *" 
+                    required
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px 16px', 
+                      borderRadius: 'var(--radius-pill)', 
+                      border: errors.name ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                      fontSize: '1rem',
+                      outline: 'none',
+                      backgroundColor: 'white'
+                    }} 
+                  />
+                  {errors.name && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.name}</span>}
                 </div>
 
-                <button type="button" className="btn-primary" style={{ borderRadius: 'var(--radius-pill)', padding: '14px', fontSize: '1.05rem', marginTop: '1rem' }}>
-                  Submit Inquiry
+                <div>
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email Address *" 
+                    required
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px 16px', 
+                      borderRadius: 'var(--radius-pill)', 
+                      border: errors.email ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                      fontSize: '1rem',
+                      outline: 'none',
+                      backgroundColor: 'white'
+                    }} 
+                  />
+                  {errors.email && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.email}</span>}
+                </div>
+
+                <div>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number (Optional)" 
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px 16px', 
+                      borderRadius: 'var(--radius-pill)', 
+                      border: errors.phone ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                      fontSize: '1rem',
+                      outline: 'none',
+                      backgroundColor: 'white'
+                    }} 
+                  />
+                  {errors.phone && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.phone}</span>}
+                </div>
+                
+                <div style={{ position: 'relative' }}>
+                  <select 
+                    name="inquiryType"
+                    value={formData.inquiryType}
+                    onChange={handleChange}
+                    required
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px 16px', 
+                      borderRadius: 'var(--radius-pill)', 
+                      border: errors.inquiryType ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                      fontSize: '1rem', 
+                      color: formData.inquiryType ? 'var(--text-dark)' : 'var(--text-light)',
+                      appearance: 'none',
+                      backgroundColor: 'white',
+                      outline: 'none'
+                    }}
+                  >
+                    <option value="" disabled>Select Inquiry Type *</option>
+                    <option value="wholesale">Wholesale / Bulk Order</option>
+                    <option value="distributor">Distributor Inquiry</option>
+                    <option value="support">Customer Support</option>
+                    <option value="other">Other Inquiry</option>
+                  </select>
+                  <span style={{ position: 'absolute', right: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: 'var(--text-light)', fontSize: '0.8rem' }}>▼</span>
+                  {errors.inquiryType && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.inquiryType}</span>}
+                </div>
+
+                {/* Honeypot field (hidden from users, filled by bots) */}
+                <input 
+                  type="text" 
+                  name="website_url" 
+                  value={formData.website_url} 
+                  onChange={handleChange} 
+                  style={{ display: 'none' }} 
+                  tabIndex="-1" 
+                  autoComplete="off" 
+                />
+                
+                <input 
+                  type="text" 
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Company Name (Optional)" 
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', outline: 'none', backgroundColor: 'white' }} 
+                />
+                <input 
+                  type="text" 
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  placeholder="Country / Region" 
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', outline: 'none', backgroundColor: 'white' }} 
+                />
+                
+                <div>
+                  <textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Your Message *" 
+                    rows="4" 
+                    required
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px 16px', 
+                      borderRadius: 'var(--radius-md)', 
+                      border: errors.message ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                      fontSize: '1rem', 
+                      fontFamily: 'inherit', 
+                      resize: 'none',
+                      outline: 'none',
+                      backgroundColor: 'white'
+                    }}
+                  ></textarea>
+                  {errors.message && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.message}</span>}
+                </div>
+                
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                    <input 
+                      type="checkbox" 
+                      id="agree" 
+                      name="agree"
+                      checked={formData.agree}
+                      onChange={handleChange}
+                      style={{ marginTop: '5px' }} 
+                    />
+                    <label htmlFor="agree" style={{ fontSize: '0.9rem', color: errors.agree ? '#e53e3e' : 'var(--text-light)' }}>I agree to be contacted regarding my inquiry. *</label>
+                  </div>
+                  {errors.agree && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1.8rem' }}>{errors.agree}</span>}
+                </div>
+
+                <button 
+                  type="submit" 
+                  disabled={status.submitting}
+                  className="btn-primary" 
+                  style={{ 
+                    borderRadius: 'var(--radius-pill)', 
+                    padding: '14px', 
+                    fontSize: '1.05rem', 
+                    marginTop: '1rem',
+                    opacity: status.submitting ? 0.7 : 1,
+                    cursor: status.submitting ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  {status.submitting ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
               </form>
             </div>
