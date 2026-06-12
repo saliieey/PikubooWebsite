@@ -17,9 +17,19 @@ app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.length === 0 || allowedOrigins.indexOf(origin) !== -1 || origin.includes('localhost')) {
+    
+    // Check if the origin matches any allowed origin, is local, is a wildcard, or is a Vercel preview site
+    const isAllowed = 
+      allowedOrigins.includes('*') || 
+      allowedOrigins.indexOf(origin) !== -1 || 
+      allowedOrigins.indexOf(origin + '/') !== -1 || 
+      origin.includes('localhost') || 
+      origin.includes('vercel.app'); // Automatically allow all Vercel preview links for the client
+
+    if (isAllowed) {
       return callback(null, true);
     }
+    
     return callback(new Error('The CORS policy for this site does not allow access from the specified Origin.'), false);
   }
 }));
