@@ -1,14 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ProductCard from '../components/ProductCard';
 import { client, urlFor } from '../sanityClient';
+
+const reviews = [
+  {
+    id: 1,
+    name: "Meera S",
+    image: "/images/priya-menon-g-review.png",
+    rating: 5,
+    text: "Pikuboo diapers have such a silky-soft, eco-conscious feeling. It's nice to know I'm choosing sustainable care for my little one."
+  },
+  {
+    id: 2,
+    name: "Rahul N",
+    image: "/images/ravi-gupta-g-review.jpeg",
+    rating: 5,
+    text: "Really great fit and easy to clean! Pikuboo makes transition to reusable diapers so accessible for parents like us!"
+  },
+  {
+    id: 3,
+    name: "Ananya T",
+    image: "/images/anil-sharma-g-review.png",
+    rating: 5,
+    text: "Nothing seems to irritate my baby's sensitive skin and helps us reduce waste. I'm glad I choose Pikuboo for my family."
+  }
+];
+
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 100 : -100,
+    opacity: 0
+  }),
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1
+  },
+  exit: (direction) => ({
+    zIndex: 0,
+    x: direction < 0 ? 100 : -100,
+    opacity: 0
+  })
+};
 
 const Home = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [videoSrc, setVideoSrc] = useState('');
+
+  // Reviews Carousel State
+  const [currentReview, setCurrentReview] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 for prev, 1 for next
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleNext = () => {
+    setDirection(1);
+    setCurrentReview((prev) => (prev + 1) % reviews.length);
+  };
+
+  const handlePrev = () => {
+    setDirection(-1);
+    setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+  };
+
+  const handleDotClick = (index) => {
+    setDirection(index > currentReview ? 1 : -1);
+    setCurrentReview(index);
+  };
+
+  useEffect(() => {
+    if (isHovered) return;
+    const timer = setInterval(() => {
+      handleNext();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isHovered, currentReview]);
 
   // Contact Form State
   const [formData, setFormData] = useState({
@@ -73,7 +144,7 @@ const Home = () => {
     }
     
     if (formData.phone.trim()) {
-      const phoneRegex = /^[0-9+\s()\-]{7,20}$/;
+      const phoneRegex = /^[0-9+\s()-]{7,20}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
         newErrors.phone = 'Please enter a valid phone number.';
       }
@@ -253,6 +324,220 @@ const Home = () => {
         </svg>
       </div>
 
+      {/* Community Reviews Section */}
+      <section 
+        className="reviews-carousel-section" 
+        style={{ 
+          padding: '6rem 1rem 4rem 1rem', 
+          backgroundColor: 'var(--bg-white)', 
+          borderBottom: '1px solid rgba(0,0,0,0.05)',
+          overflow: 'hidden'
+        }}
+      >
+        <div className="container" style={{ position: 'relative', maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <h2 style={{ fontSize: '2.5rem', color: 'var(--text-dark)', marginBottom: '1rem', fontWeight: 800 }}>
+              What Parents Say
+            </h2>
+            <p style={{ color: 'var(--text-body)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto', lineHeight: '1.6' }}>
+              Discover real stories from families who trust Pikuboo for comfort, eco-friendliness, and simple diapering.
+            </p>
+          </div>
+
+          {/* DESKTOP VIEW: 3-Column Grid */}
+          <div className="reviews-desktop-view">
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem' }}>
+              {reviews.map((review) => (
+                <div key={review.id} style={{ textAlign: 'center', padding: '1rem' }}>
+                  <img 
+                    src={review.image} 
+                    alt={review.name} 
+                    style={{ 
+                      width: '120px', 
+                      height: '120px', 
+                      borderRadius: '50%', 
+                      objectFit: 'cover', 
+                      margin: '0 auto 1.5rem', 
+                      border: '4px solid white', 
+                      boxShadow: '0 10px 20px rgba(0,0,0,0.05)' 
+                    }} 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                  <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>
+                    {review.name}
+                  </h4>
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
+                    {[...Array(review.rating)].map((_, i) => (
+                      <Star key={i} size={18} fill="#FFC107" color="#FFC107" />
+                    ))}
+                  </div>
+                  <p style={{ color: 'var(--text-body)', fontStyle: 'italic', lineHeight: '1.7', fontSize: '1.05rem', margin: 0 }}>
+                    "{review.text}"
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* MOBILE VIEW: Carousel */}
+          <div className="reviews-mobile-view" style={{ maxWidth: '600px', margin: '0 auto' }}>
+            <div 
+              className="reviews-carousel-container"
+              style={{ 
+                position: 'relative', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                width: '100%',
+                minHeight: '360px',
+                backgroundColor: 'var(--bg-main)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '2.5rem 1.25rem',
+                boxShadow: 'var(--shadow-soft)',
+                border: '1px solid rgba(0,0,0,0.02)'
+              }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* Left Chevron */}
+              <button 
+                onClick={handlePrev}
+                style={{
+                  position: 'absolute',
+                  left: '10px',
+                  zIndex: 10,
+                  background: 'white',
+                  border: 'none',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  color: 'var(--text-dark)',
+                  transition: 'all 0.2s ease'
+                }}
+                className="carousel-nav-btn prev"
+                aria-label="Previous Review"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              {/* Animating Card Content */}
+              <div style={{ width: '100%', maxWidth: '500px', textAlign: 'center' }}>
+                <AnimatePresence mode="wait" custom={direction}>
+                  <motion.div
+                    key={currentReview}
+                    custom={direction}
+                    variants={slideVariants}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{
+                      x: { type: "spring", stiffness: 200, damping: 25 },
+                      opacity: { duration: 0.2 }
+                    }}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <img 
+                      src={reviews[currentReview].image} 
+                      alt={reviews[currentReview].name} 
+                      style={{ 
+                        width: '90px', 
+                        height: '90px', 
+                        borderRadius: '50%', 
+                        objectFit: 'cover', 
+                        marginBottom: '1rem', 
+                        border: '4px solid white', 
+                        boxShadow: '0 8px 16px rgba(0,0,0,0.06)' 
+                      }} 
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <h4 style={{ fontSize: '1.25rem', color: 'var(--text-dark)', marginBottom: '0.25rem', fontWeight: 700 }}>
+                      {reviews[currentReview].name}
+                    </h4>
+                    
+                    <div style={{ display: 'flex', gap: '4px', marginBottom: '1.2rem', justifyContent: 'center' }}>
+                      {[...Array(reviews[currentReview].rating)].map((_, i) => (
+                        <Star key={i} size={16} fill="#FFC107" color="#FFC107" />
+                      ))}
+                    </div>
+
+                    <p 
+                      className="reviews-carousel-text"
+                      style={{ 
+                        color: 'var(--text-body)', 
+                        fontStyle: 'italic', 
+                        lineHeight: '1.6', 
+                        fontSize: '0.95rem',
+                        margin: 0
+                      }}
+                    >
+                      "{reviews[currentReview].text}"
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Right Chevron */}
+              <button 
+                onClick={handleNext}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  zIndex: 10,
+                  background: 'white',
+                  border: 'none',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+                  color: 'var(--text-dark)',
+                  transition: 'all 0.2s ease'
+                }}
+                className="carousel-nav-btn next"
+                aria-label="Next Review"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+
+            {/* Dots Indicator */}
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '1.5rem' }}>
+              {reviews.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  style={{
+                    width: index === currentReview ? '24px' : '8px',
+                    height: '8px',
+                    borderRadius: '4px',
+                    backgroundColor: index === currentReview ? 'var(--primary)' : '#D0D0D0',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: 0,
+                    transition: 'all 0.3s ease'
+                  }}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Our Products Introduction */}
       <section style={{ padding: '3rem 0 1rem 0', backgroundColor: 'var(--bg-main)' }}>
@@ -531,6 +816,59 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <style>{`
+        /* Reviews Carousel Styling & Responsive Overrides */
+        .reviews-desktop-view {
+          display: block;
+        }
+        .reviews-mobile-view {
+          display: none;
+        }
+
+        .carousel-nav-btn {
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .carousel-nav-btn:hover {
+          background-color: var(--primary) !important;
+          color: white !important;
+          transform: scale(1.08) !important;
+          box-shadow: 0 6px 20px rgba(37, 211, 102, 0.15) !important;
+        }
+        .carousel-nav-btn:active {
+          transform: scale(0.95) !important;
+        }
+
+        @media (max-width: 900px) {
+          .reviews-desktop-view {
+            display: none;
+          }
+          .reviews-mobile-view {
+            display: block;
+          }
+          .reviews-carousel-section {
+            padding: 4rem 1rem 3rem 1rem !important;
+          }
+          .reviews-carousel-container {
+            padding: 2.5rem 1.25rem !important;
+            min-height: 360px !important;
+          }
+          .carousel-nav-btn {
+            width: 36px !important;
+            height: 36px !important;
+          }
+          .carousel-nav-btn.prev {
+            left: 10px !important;
+          }
+          .carousel-nav-btn.next {
+            right: 10px !important;
+          }
+          .reviews-carousel-text {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+        }
+      `}</style>
     </>
   );
 };

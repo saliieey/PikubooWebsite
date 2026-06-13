@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Send, ChevronDown, Mail, Phone, MapPin, Star } from 'lucide-react';
+import { useState } from 'react';
+import { Send, ChevronDown } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ const Contact = () => {
     }
     
     if (formData.phone.trim()) {
-      const phoneRegex = /^[0-9+\s()\-]{7,20}$/;
+      const phoneRegex = /^[0-9+\s()-]{7,20}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
         newErrors.phone = 'Please enter a valid phone number.';
       }
@@ -377,58 +377,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* 5. Community Reviews Section */}
-      <section className="reviews-section" style={{ padding: '6rem 1rem', backgroundColor: 'var(--bg-white)', borderTop: '1px solid rgba(0,0,0,0.05)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '2.8rem', color: 'var(--text-dark)', marginBottom: '1.5rem', fontWeight: 800 }}>Community Reviews</h2>
-            <p style={{ color: 'var(--text-body)', fontSize: '1.15rem', maxWidth: '800px', margin: '0 auto', lineHeight: '1.8' }}>
-              Hear from parents who trust Pikuboo! Discover their real stories about comfort, eco-friendliness, and how our cotton diapers make parenting simpler and greener.
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '4rem' }}>
-            
-            {/* Review 1 */}
-            <div style={{ textAlign: 'center' }}>
-              <img src="/images/priya-menon-g-review.png" alt="Meera S" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} loading="lazy" decoding="async" />
-              <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Meera S</h4>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
-                {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="#FFC107" color="#FFC107" />)}
-              </div>
-              <p style={{ color: 'var(--text-body)', fontStyle: 'italic', lineHeight: '1.7', fontSize: '1.05rem' }}>
-                "Pikuboo diapers have such a silky-soft, eco-conscious feeling. It's nice to know I'm choosing sustainable care for my little one."
-              </p>
-            </div>
-
-            {/* Review 2 */}
-            <div style={{ textAlign: 'center' }}>
-              <img src="/images/ravi-gupta-g-review.jpeg" alt="Rahul N" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} loading="lazy" decoding="async" />
-              <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Rahul N</h4>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
-                {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="#FFC107" color="#FFC107" />)}
-              </div>
-              <p style={{ color: 'var(--text-body)', fontStyle: 'italic', lineHeight: '1.7', fontSize: '1.05rem' }}>
-                "Really great fit and easy to clean! Pikuboo makes transition to reusable diapers so accessible for parents like us!"
-              </p>
-            </div>
-
-            {/* Review 3 */}
-            <div style={{ textAlign: 'center' }}>
-              <img src="/images/anil-sharma-g-review.png" alt="Ananya T" style={{ width: '120px', height: '120px', borderRadius: '50%', objectFit: 'cover', margin: '0 auto 1.5rem', border: '4px solid white', boxShadow: '0 10px 20px rgba(0,0,0,0.05)' }} loading="lazy" decoding="async" />
-              <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>Ananya T</h4>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
-                {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="#FFC107" color="#FFC107" />)}
-              </div>
-              <p style={{ color: 'var(--text-body)', fontStyle: 'italic', lineHeight: '1.7', fontSize: '1.05rem' }}>
-                "Nothing seems to irritate my baby's sensitive skin and helps us reduce waste. I'm glad I choose Pikuboo for my family."
-              </p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
       {/* Global overrides for this page */}
       <style>{`
         .contact-card:hover {
@@ -448,7 +396,6 @@ const Contact = () => {
           .hero-img { min-height: 250px !important; }
           .form-section { padding: 2rem 1rem 3rem !important; }
           .maps-section { padding: 0 1rem 3rem !important; }
-          .reviews-section { padding: 4rem 1rem !important; }
         }
       `}</style>
     </div>
