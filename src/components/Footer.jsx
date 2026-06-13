@@ -46,7 +46,6 @@ const Footer = () => {
               <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-facebook-square"></i> Facebook</a></li>
               <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-instagram-square"></i> Instagram</a></li>
               <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-linkedin"></i> LinkedIn</a></li>
-              <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-twitter-square"></i> Twitter</a></li>
             </ul>
           </div>
 
