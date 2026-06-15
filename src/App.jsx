@@ -16,6 +16,9 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const Contact = lazy(() => import('./pages/Contact'));
 const FAQ = lazy(() => import('./pages/FAQ'));
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
 
 function App() {
   return (
@@ -42,9 +45,13 @@ function App() {
             <Route path="/wholesale" element={<Shop />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy-policy" element={<About />} />
-            <Route path="/terms-and-conditions" element={<About />} />
-            <Route path="/refund-policy" element={<About />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/conditions" element={<TermsAndConditions />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/refund" element={<RefundPolicy />} />
           </Routes>
         </Suspense>
       </main>

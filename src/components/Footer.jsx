@@ -29,13 +29,9 @@ const Footer = () => {
           <div className="footer-links-col">
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Quick Links</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }} className="footer-links-list">
-              <li><Link to="/terms" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Terms</Link></li>
-              <li><Link to="/conditions" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Conditions</Link></li>
-              <li><Link to="/refund" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Refund</Link></li>
-              <li><Link to="/groups" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Groups</Link></li>
-              <li><Link to="/careers" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Careers</Link></li>
-              <li><Link to="/policy" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Policy</Link></li>
-              <li><Link to="/support" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Support</Link></li>
+              <li><Link to="/terms-and-conditions" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Terms & Conditions</Link></li>
+              <li><Link to="/privacy-policy" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Privacy Policy</Link></li>
+              <li><Link to="/refund-policy" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Refund Policy</Link></li>
             </ul>
           </div>
 
@@ -43,9 +39,9 @@ const Footer = () => {
           <div className="footer-social-col">
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Social</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }} className="footer-social-list">
-              <li><a href="#" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Facebook</a></li>
-              <li><a href="#" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Instagram</a></li>
-              <li><a href="#" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>LinkedIn</a></li>
+              <li><a href="https://www.facebook.com/share/1LaPPizVWH/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Facebook</a></li>
+              <li><a href="https://www.instagram.com/pikuboo.care?igsh=OWl1Y25rbXJ6ajls&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Instagram</a></li>
+              <li><a href="https://www.linkedin.com/company/pikuboo/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>LinkedIn</a></li>
             </ul>
           </div>
 

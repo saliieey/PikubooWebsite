@@ -67,7 +67,7 @@ const Navbar = () => {
 
         {/* Right Actions - WhatsApp Button */}
         <div style={{ display: 'flex', alignItems: 'center', flex: 1, justifyContent: 'flex-end' }}>
-          <a href="https://wa.me/919778447996" target="_blank" rel="noreferrer" className="whatsapp-btn desktop-whatsapp">
+          <a href="https://wa.me/919778447996?text=Hello%20Pikuboo%20Care%21%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20inquire%20about%20your%20products.%20Could%20you%20please%20assist%20me%3F" target="_blank" rel="noreferrer" className="whatsapp-btn desktop-whatsapp">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
             <span className="whatsapp-text">WhatsApp Us</span>
           </a>
@@ -109,7 +109,7 @@ const Navbar = () => {
           <Link to="/faq" className="mobile-link" onClick={toggleMenu}>FAQ</Link>
           <Link to="/contact" className="mobile-link" onClick={toggleMenu}>Contact</Link>
 
-          <a href="https://wa.me/919778447996" target="_blank" rel="noreferrer" className="mobile-whatsapp" onClick={toggleMenu}>
+          <a href="https://wa.me/919778447996?text=Hello%20Pikuboo%20Care%21%20I%20am%20visiting%20your%20website%20and%20would%20like%20to%20inquire%20about%20your%20products.%20Could%20you%20please%20assist%20me%3F" target="_blank" rel="noreferrer" className="mobile-whatsapp" onClick={toggleMenu}>
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
             Chat With Us
           </a>
