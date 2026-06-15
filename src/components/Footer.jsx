@@ -9,7 +9,7 @@ const Footer = () => {
           
           {/* Brand Info */}
           <div className="footer-brand-info" style={{ display: 'flex', flexDirection: 'column' }}>
-            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" className="footer-logo" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} loading="lazy" decoding="async" />
+            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" className="footer-logo" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain', alignSelf: 'flex-start', marginLeft: '-8px' }} loading="lazy" decoding="async" />
             <p style={{ color: 'var(--text-body)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>
               Pikuboo is Kerala's reliable manufacturer of quality baby diapers, providing comfortable, eco-friendly, and economical diapering solutions to parents everywhere. Through quality and thoughtfulness, we make being a parent simple while reducing our impact on our planet. Start your path to smarter, greener, and happier baby care with us today!
             </p>
@@ -43,9 +43,9 @@ const Footer = () => {
           <div className="footer-social-col">
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Social</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }} className="footer-social-list">
-              <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-facebook-square"></i> Facebook</a></li>
-              <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-instagram-square"></i> Instagram</a></li>
-              <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-linkedin"></i> LinkedIn</a></li>
+              <li><a href="#" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Facebook</a></li>
+              <li><a href="#" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Instagram</a></li>
+              <li><a href="#" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>LinkedIn</a></li>
             </ul>
           </div>
 
@@ -82,6 +82,7 @@ const Footer = () => {
           }
           .footer-logo {
             margin: 0 auto 1.5rem auto !important;
+            align-self: center !important;
           }
           .footer-contact-details {
             align-items: center;
