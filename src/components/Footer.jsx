@@ -5,15 +5,15 @@ const Footer = () => {
     <footer style={{ backgroundColor: 'var(--bg-white)', paddingTop: '4rem', borderTop: '1px solid var(--border-color)', marginTop: 'auto' }}>
       <div className="container">
         {/* Adjusted Grid layout for optimal column sizing to match original */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: '2rem', marginBottom: '3rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: '2rem', marginBottom: '3rem' }} className="footer-grid">
           
           {/* Brand Info */}
-          <div>
-            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} loading="lazy" decoding="async" />
+          <div className="footer-brand-info" style={{ display: 'flex', flexDirection: 'column' }}>
+            <img src="/images/pikuboo-logo-navbar.png" alt="Pikuboo Logo" className="footer-logo" style={{ height: '40px', marginBottom: '1.5rem', objectFit: 'contain' }} loading="lazy" decoding="async" />
             <p style={{ color: 'var(--text-body)', marginBottom: '1.5rem', fontSize: '0.95rem', lineHeight: '1.6' }}>
               Pikuboo is Kerala's reliable manufacturer of quality baby diapers, providing comfortable, eco-friendly, and economical diapering solutions to parents everywhere. Through quality and thoughtfulness, we make being a parent simple while reducing our impact on our planet. Start your path to smarter, greener, and happier baby care with us today!
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.95rem', color: 'var(--text-dark)' }}>
+            <div className="footer-contact-details" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.95rem', color: 'var(--text-dark)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 <span>Connect@pikuboo.com</span>
@@ -26,9 +26,9 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="footer-links-col">
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Quick Links</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }} className="footer-links-list">
               <li><Link to="/terms" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Terms</Link></li>
               <li><Link to="/conditions" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Conditions</Link></li>
               <li><Link to="/refund" style={{ color: 'var(--text-light)', transition: 'color 0.2s' }}>Refund</Link></li>
@@ -40,9 +40,9 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div>
+          <div className="footer-social-col">
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Social</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }} className="footer-social-list">
               <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-facebook-square"></i> Facebook</a></li>
               <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-instagram-square"></i> Instagram</a></li>
               <li><a href="#" style={{ color: 'var(--text-light)', display: 'flex', alignItems: 'center', gap: '8px' }}><i className="fab fa-linkedin"></i> LinkedIn</a></li>
@@ -50,9 +50,9 @@ const Footer = () => {
           </div>
 
           {/* Buy Our Products */}
-          <div>
+          <div className="footer-buy-col">
             <h4 style={{ marginBottom: '1.5rem', fontSize: '1.1rem' }}>Buy Our Products From</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }} className="footer-buy-links">
               <a href="#" style={{ display: 'inline-block', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', padding: '8px', maxWidth: '140px', backgroundColor: 'white' }}>
                 <img src="/images/flipkart-logo-footer-icon.png" alt="Buy on Flipkart" style={{ width: '100%' }} loading="lazy" decoding="async" />
               </a>
@@ -65,15 +65,38 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div style={{ borderTop: '1px solid var(--border-color)', padding: '1.5rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }}>
+        <div style={{ borderTop: '1px solid var(--border-color)', padding: '1.5rem 0', color: 'var(--text-light)', fontSize: '0.9rem' }} className="footer-copyright">
           <p>© 2025 Pikuboo. All Rights Reserved.</p>
         </div>
       </div>
 
       <style>{`
         @media (max-width: 900px) {
-          footer > .container > div:first-child {
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            text-align: center;
+            gap: 3rem !important;
+          }
+          .footer-brand-info {
+            align-items: center;
+          }
+          .footer-logo {
+            margin: 0 auto 1.5rem auto !important;
+          }
+          .footer-contact-details {
+            align-items: center;
+          }
+          .footer-links-list {
+            align-items: center;
+          }
+          .footer-social-list {
+            align-items: center;
+          }
+          .footer-buy-links {
+            align-items: center;
+          }
+          .footer-copyright {
+            text-align: center;
           }
         }
       `}</style>
