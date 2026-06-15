@@ -580,7 +580,16 @@ const Home = () => {
       <section style={{ padding: '4rem 0', backgroundColor: 'var(--bg-white)' }}>
         <div className="container">
           <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '2.25rem', marginBottom: '1rem', textAlign: 'center' }}>Top Features of Pikuboo Caped Diapers</h2>
+            <h2 style={{ fontSize: '2.25rem', marginBottom: '1.5rem', textAlign: 'center' }}>Top Features of Pikuboo Caped Diapers</h2>
+            <div className="features-image-container">
+              <img 
+                src="/images/caped_diaper-removebg-preview.png" 
+                alt="Pikuboo Caped Diaper Top Features" 
+                className="features-showcase-image" 
+                loading="lazy" 
+                decoding="async" 
+              />
+            </div>
             <p style={{ maxWidth: '900px', margin: '0 auto', color: 'var(--text-body)', fontSize: '1.05rem', lineHeight: '1.7', textAlign: 'center' }}>
               Pikuboo diapers come loaded with features that parents will love! Our diapers provide superior comfort and absorption, are adjustable, waterproof, and made out of baby-safe cotton. The reusable inserts provide long-lasting dryness, allow air to circulate to manage rashes and irritation, and are sweat-proof. They are simple to wash and quick to dry, providing convenient utility without sacrificing quality. Pikuboo diapers come in a variety of vibrant colors in combination with designs that allow for thought, showcase both style and function, and also provide a joyful experience of diapering babies with our innovative and parent-approved baby diapering solutions today!
             </p>
@@ -818,6 +827,27 @@ const Home = () => {
       </section>
 
       <style>{`
+        /* Top Features Image Showcase Styling */
+        .features-image-container {
+          max-width: 440px;
+          margin: 0 auto 2rem auto;
+          position: relative;
+        }
+
+        .features-showcase-image {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: contain;
+        }
+
+        @media (max-width: 900px) {
+          .features-image-container {
+            margin: 0 auto 1.5rem auto;
+            max-width: 90%;
+          }
+        }
+
         /* Reviews Carousel Styling & Responsive Overrides */
         .reviews-desktop-view {
           display: block;
