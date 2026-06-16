@@ -20,7 +20,9 @@ const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
 
-const UNDER_MAINTENANCE = true; // Toggle this to true to block the site; change to false to go live
+// Check if current hostname is the production domain (pikuboo.com)
+const isProductionDomain = typeof window !== 'undefined' && window.location.hostname.includes('pikuboo.com');
+const UNDER_MAINTENANCE = isProductionDomain; // Only block on the live production domain (not local or vercel.app previews)
 
 function App() {
   if (UNDER_MAINTENANCE) {
