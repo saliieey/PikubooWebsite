@@ -9,26 +9,34 @@ import { client, urlFor } from '../sanityClient';
 const reviews = [
   {
     id: 1,
-    name: "Meera S",
-    image: "/images/priya-menon-g-review.png",
+    name: "Anjali",
+    image: "/images/anjali-review.png",
     rating: 5,
-    text: "Pikuboo diapers have such a silky-soft, eco-conscious feeling. It's nice to know I'm choosing sustainable care for my little one."
+    text: "The quality of Pikuboo Diapers is better compared to other cloth diapers we have used! They look good in terms of design and build! It also serves its purpose as it is leak proof."
   },
   {
     id: 2,
-    name: "Rahul N",
-    image: "/images/ravi-gupta-g-review.jpeg",
+    name: "Sneha Menon",
+    image: "/images/priya-menon-g-review.png",
     rating: 5,
-    text: "Really great fit and easy to clean! Pikuboo makes transition to reusable diapers so accessible for parents like us!"
+    text: "It’s not you who is supposed to say thank you... it’s me after all! Because I absolutely loved using the Pikuboo cloth diaper for my baby! 💛 The material is super soft and gentle on the skin, and I haven’t faced any rashes or discomfort yet. The absorbency is also really impressive, even for longer hours, and the fit is snug without being too tight. I also love how cute and stylish the prints are! As a new mom, it feels great to use something reusable, comfortable, and baby-friendly. I would highly recommend it to parents looking for a reliable cloth diaper option..."
   },
   {
     id: 3,
-    name: "Ananya T",
+    name: "Ashie Ritesh",
     image: "/images/anil-sharma-g-review.png",
     rating: 5,
-    text: "Nothing seems to irritate my baby's sensitive skin and helps us reduce waste. I'm glad I choose Pikuboo for my family."
+    text: "I have a one year old, and I've been very surprised with the product. The diaper itself holds up to 1 pee, but when you add the extra pads it holds up to 2-3 pees, which is really nice!"
+  },
+  {
+    id: 4,
+    name: "Khushi Shetty",
+    image: "/images/khushi-shetty-review.png",
+    rating: 5,
+    text: "You can use these for babies from 6 months to 3 years. I’ve been using them for my baby for the past two years and have never faced any issues with rashes - the quality is amazing. They’re machine-wash friendly and don’t stain easily either. I’ve tried brands like SuperBottoms and R for Rabbit, but I always keep coming back to Pikuboo!"
   }
 ];
+
 
 const slideVariants = {
   enter: (direction) => ({
@@ -344,37 +352,72 @@ const Home = () => {
             </p>
           </div>
 
-          {/* DESKTOP VIEW: 3-Column Grid */}
+          {/* DESKTOP VIEW: 2x2 Grid of Premium Horizontal Cards */}
           <div className="reviews-desktop-view">
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
               {reviews.map((review) => (
-                <div key={review.id} style={{ textAlign: 'center', padding: '1rem' }}>
-                  <img 
-                    src={review.image} 
-                    alt={review.name} 
-                    style={{ 
-                      width: '120px', 
-                      height: '120px', 
-                      borderRadius: '50%', 
-                      objectFit: 'cover', 
-                      margin: '0 auto 1.5rem', 
-                      border: '4px solid white', 
-                      boxShadow: '0 10px 20px rgba(0,0,0,0.05)' 
-                    }} 
-                    loading="lazy" 
-                    decoding="async" 
-                  />
-                  <h4 style={{ fontSize: '1.3rem', color: 'var(--text-dark)', marginBottom: '0.5rem', fontWeight: 700 }}>
-                    {review.name}
-                  </h4>
-                  <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', marginBottom: '1.5rem' }}>
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} size={18} fill="#FFC107" color="#FFC107" />
-                    ))}
+                <div 
+                  key={review.id} 
+                  className="review-card"
+                  style={{ 
+                    backgroundColor: 'white',
+                    borderRadius: '16px',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
+                    border: '1px solid #f0f0f0',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    padding: '2.5rem 2rem',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    height: '100%'
+                  }}
+                >
+                  {/* Left Column: Avatar & Name */}
+                  <div style={{ 
+                    flex: '0 0 120px', 
+                    marginRight: '2rem', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    alignItems: 'center',
+                    textAlign: 'center'
+                  }}>
+                    <img 
+                      src={review.image} 
+                      alt={review.name} 
+                      style={{ 
+                        width: '80px', 
+                        height: '80px', 
+                        borderRadius: '50%', 
+                        objectFit: 'cover', 
+                        border: '4px solid #f9f9f9', 
+                        boxShadow: '0 6px 12px rgba(0,0,0,0.05)',
+                        marginBottom: '0.75rem'
+                      }} 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
+                    <h4 style={{ fontSize: '1.05rem', color: 'var(--text-dark)', fontWeight: 700, margin: 0 }}>
+                      {review.name}
+                    </h4>
                   </div>
-                  <p style={{ color: 'var(--text-body)', fontStyle: 'italic', lineHeight: '1.7', fontSize: '1.05rem', margin: 0 }}>
-                    "{review.text}"
-                  </p>
+
+                  {/* Right Column: Stars & Text */}
+                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', gap: '4px', marginBottom: '0.75rem' }}>
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} size={14} fill="#FFC107" color="#FFC107" />
+                      ))}
+                    </div>
+                    <p style={{ 
+                      color: 'var(--text-body)', 
+                      fontStyle: 'italic', 
+                      lineHeight: '1.6', 
+                      fontSize: '0.98rem', 
+                      margin: 0 
+                    }}>
+                      "{review.text}"
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -580,11 +623,11 @@ const Home = () => {
       <section style={{ padding: '4rem 0', backgroundColor: 'var(--bg-white)' }}>
         <div className="container">
           <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-            <h2 style={{ fontSize: '2.25rem', marginBottom: '1.5rem', textAlign: 'center' }}>Top Features of Pikuboo Caped Diapers</h2>
+            <h2 style={{ fontSize: '2.25rem', marginBottom: '1.5rem', textAlign: 'center' }}>Features of Pikuboo Diapers</h2>
             <div className="features-image-container">
               <img 
                 src="/images/caped_diaper-removebg-preview.png" 
-                alt="Pikuboo Caped Diaper Top Features" 
+                alt="Pikuboo Diaper Features" 
                 className="features-showcase-image" 
                 loading="lazy" 
                 decoding="async" 
@@ -851,6 +894,11 @@ const Home = () => {
         /* Reviews Carousel Styling & Responsive Overrides */
         .reviews-desktop-view {
           display: block;
+        }
+        .review-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+          border-color: rgba(37, 211, 102, 0.15) !important;
         }
         .reviews-mobile-view {
           display: none;
