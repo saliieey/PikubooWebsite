@@ -20,7 +20,74 @@ const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
 const RefundPolicy = lazy(() => import('./pages/RefundPolicy'));
 
+const UNDER_MAINTENANCE = true; // Toggle this to true to block the site; change to false to go live
+
 function App() {
+  if (UNDER_MAINTENANCE) {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '100vh',
+        fontFamily: '"Outfit", "Inter", sans-serif',
+        textAlign: 'center',
+        padding: '40px 20px',
+        backgroundColor: '#f9fbf7',
+        color: '#2d3748',
+        boxSizing: 'border-box'
+      }}>
+        <div style={{
+          backgroundColor: 'white',
+          padding: '3rem 2rem',
+          borderRadius: '24px',
+          boxShadow: '0 10px 40px rgba(162, 207, 141, 0.1)',
+          maxWidth: '500px',
+          width: '100%',
+          border: '1px solid rgba(162, 207, 141, 0.15)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+        }}>
+          <img 
+            src="/images/pikuboo-logo-navbar.png" 
+            alt="Pikuboo Logo" 
+            style={{ 
+              height: '55px', 
+              marginBottom: '2rem',
+              objectFit: 'contain'
+            }} 
+          />
+          <h1 style={{ 
+            fontSize: '1.8rem', 
+            fontWeight: 800, 
+            color: '#2d3748',
+            marginBottom: '1rem',
+            lineHeight: '1.3'
+          }}>
+            Scheduled Site Maintenance
+          </h1>
+          <div style={{
+            width: '50px',
+            height: '4px',
+            backgroundColor: '#a2cf8d',
+            borderRadius: '2px',
+            marginBottom: '1.5rem'
+          }}></div>
+          <p style={{ 
+            fontSize: '1.05rem', 
+            color: '#718096', 
+            lineHeight: '1.6',
+            margin: 0
+          }}>
+            We are currently performing scheduled system updates to prepare the platform for the final version. We will be back online shortly. Thank you for your patience!
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
       <ScrollToTop />
