@@ -19,7 +19,7 @@ const reviews = [
     name: "Sneha Menon",
     image: "/images/priya-menon-g-review.png",
     rating: 5,
-    text: "It’s not you who is supposed to say thank you... it’s me after all! Because I absolutely loved using the Pikuboo cloth diaper for my baby! 💛 The material is super soft and gentle on the skin, and I haven’t faced any rashes or discomfort yet. The absorbency is also really impressive, even for longer hours, and the fit is snug without being too tight. I also love how cute and stylish the prints are! As a new mom, it feels great to use something reusable, comfortable, and baby-friendly. I would highly recommend it to parents looking for a reliable cloth diaper option..."
+    text: "I absolutely loved using the Pikuboo cloth diaper for my baby! 💛 The material is super soft and gentle on the skin, and I haven’t faced any rashes or discomfort yet. The absorbency is also really impressive, even for longer hours, and the fit is snug without being too tight. I also love how cute and stylish the prints are! As a new mom, it feels great to use something reusable, comfortable, and baby-friendly. I would highly recommend it to parents looking for a reliable cloth diaper option..."
   },
   {
     id: 3,
@@ -114,7 +114,7 @@ const Home = () => {
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
-    
+
     // Clear error when user types/changes
     if (errors[name]) {
       setErrors(prev => ({
@@ -129,7 +129,7 @@ const Home = () => {
     if (!formData.name.trim()) {
       newErrors.name = 'Full Name is required.';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email Address is required.';
     } else {
@@ -138,11 +138,11 @@ const Home = () => {
         newErrors.email = 'Please enter a valid email address.';
       }
     }
-    
+
     if (!formData.inquiryType) {
       newErrors.inquiryType = 'Please select an inquiry type.';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required.';
     }
@@ -150,14 +150,14 @@ const Home = () => {
     if (!formData.agree) {
       newErrors.agree = 'You must agree to be contacted.';
     }
-    
+
     if (formData.phone.trim()) {
       const phoneRegex = /^[0-9+\s()-]{7,20}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
         newErrors.phone = 'Please enter a valid phone number.';
       }
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -189,7 +189,7 @@ const Home = () => {
       setStatus({ submitting: false, success: false, error: 'Please correct the highlighted errors.' });
       return;
     }
-    
+
     setStatus({ submitting: true, success: false, error: null });
 
     const apiUrl = import.meta.env.VITE_API_URL || '';
@@ -232,18 +232,18 @@ const Home = () => {
         });
         setErrors({});
       } else {
-        setStatus({ 
-          submitting: false, 
-          success: false, 
-          error: result.message || 'Something went wrong. Please try again.' 
+        setStatus({
+          submitting: false,
+          success: false,
+          error: result.message || 'Something went wrong. Please try again.'
         });
       }
     } catch (err) {
       console.error('Submission error:', err);
-      setStatus({ 
-        submitting: false, 
-        success: false, 
-        error: 'Failed to connect to the email server. Please try again later.' 
+      setStatus({
+        submitting: false,
+        success: false,
+        error: 'Failed to connect to the email server. Please try again later.'
       });
     }
   };
@@ -264,8 +264,8 @@ const Home = () => {
           price: item.price ? item.price.toString() : '799',
           rating: item.rating ? item.rating.toString() : '4.8',
           // Optimize Sanity images: resize to 400x400, auto-format to WebP/AVIF, quality 80
-          image: item.images && item.images.length > 0 
-            ? urlFor(item.images[0]).width(400).height(400).auto('format').quality(80).url() 
+          image: item.images && item.images.length > 0
+            ? urlFor(item.images[0]).width(400).height(400).auto('format').quality(80).url()
             : '/images/pikuboo-cloth-diaper-yellow.png',
           amazonLink: item.amazonLink,
           flipkartLink: item.flipkartLink
@@ -298,13 +298,13 @@ const Home = () => {
       {/* Hero Video Section */}
       <section className="hero-section" style={{ width: '100%', backgroundColor: '#E3D4CF', position: 'relative', overflow: 'hidden' }}>
         {videoSrc && (
-          <video 
+          <video
             className="hero-video"
-            src={videoSrc} 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
             preload="none"
           />
         )}
@@ -314,9 +314,9 @@ const Home = () => {
       <div style={{ position: 'relative', zIndex: 10 }}>
         {/* Top Wave (Absolutely positioned above the marquee container) */}
         <svg viewBox="0 0 1440 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', display: 'block', position: 'absolute', bottom: 'calc(100% - 1px)', left: 0 }}>
-          <path d="M0 10C240 20 480 20 720 10C960 0 1200 0 1440 10V20H0V10Z" fill="var(--primary)"/>
+          <path d="M0 10C240 20 480 20 720 10C960 0 1200 0 1440 10V20H0V10Z" fill="var(--primary)" />
         </svg>
-        
+
         <div className="marquee-container" style={{ transform: 'none', padding: '12px 0', margin: 0, display: 'flex', alignItems: 'center', backgroundColor: 'var(--primary)' }}>
           <div className="marquee-content" style={{ display: 'flex', alignItems: 'center' }}>
             <span style={{ margin: '0 20px' }}>• Pikuboo - Soft Reusable Diapers for Happy Babies</span>
@@ -325,19 +325,19 @@ const Home = () => {
             <span style={{ margin: '0 20px' }}>• Pikuboo - Soft Reusable Diapers for Happy Babies</span>
           </div>
         </div>
-        
+
         {/* Bottom Wave (Absolutely positioned below the marquee container) */}
         <svg viewBox="0 0 1440 20" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', display: 'block', position: 'absolute', top: 'calc(100% - 1px)', left: 0, transform: 'rotate(180deg)' }}>
-          <path d="M0 10C240 20 480 20 720 10C960 0 1200 0 1440 10V20H0V10Z" fill="var(--primary)"/>
+          <path d="M0 10C240 20 480 20 720 10C960 0 1200 0 1440 10V20H0V10Z" fill="var(--primary)" />
         </svg>
       </div>
 
       {/* Community Reviews Section */}
-      <section 
-        className="reviews-carousel-section" 
-        style={{ 
-          padding: '6rem 1rem 4rem 1rem', 
-          backgroundColor: 'var(--bg-white)', 
+      <section
+        className="reviews-carousel-section"
+        style={{
+          padding: '6rem 1rem 4rem 1rem',
+          backgroundColor: 'var(--bg-white)',
           borderBottom: '1px solid rgba(0,0,0,0.05)',
           overflow: 'hidden'
         }}
@@ -352,72 +352,45 @@ const Home = () => {
             </p>
           </div>
 
-          {/* DESKTOP VIEW: 2x2 Grid of Premium Horizontal Cards */}
+          {/* DESKTOP VIEW: 2x2 Grid of Premium Text-Only Cards */}
           <div className="reviews-desktop-view">
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '2rem' }}>
               {reviews.map((review) => (
-                <div 
-                  key={review.id} 
+                <div
+                  key={review.id}
                   className="review-card"
-                  style={{ 
+                  style={{
                     backgroundColor: 'white',
                     borderRadius: '16px',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.02)',
                     border: '1px solid #f0f0f0',
                     display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
+                    flexDirection: 'column',
                     padding: '2.5rem 2rem',
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    height: '100%'
+                    height: '100%',
+                    justifyContent: 'space-between'
                   }}
                 >
-                  {/* Left Column: Avatar & Name */}
-                  <div style={{ 
-                    flex: '0 0 120px', 
-                    marginRight: '2rem', 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    alignItems: 'center',
-                    textAlign: 'center'
-                  }}>
-                    <img 
-                      src={review.image} 
-                      alt={review.name} 
-                      style={{ 
-                        width: '80px', 
-                        height: '80px', 
-                        borderRadius: '50%', 
-                        objectFit: 'cover', 
-                        border: '4px solid #f9f9f9', 
-                        boxShadow: '0 6px 12px rgba(0,0,0,0.05)',
-                        marginBottom: '0.75rem'
-                      }} 
-                      loading="lazy" 
-                      decoding="async" 
-                    />
-                    <h4 style={{ fontSize: '1.05rem', color: 'var(--text-dark)', fontWeight: 700, margin: 0 }}>
-                      {review.name}
-                    </h4>
-                  </div>
-
-                  {/* Right Column: Stars & Text */}
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                    <div style={{ display: 'flex', gap: '4px', marginBottom: '0.75rem' }}>
+                  <div>
+                    <div style={{ display: 'flex', gap: '4px', marginBottom: '1.25rem' }}>
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} size={14} fill="#FFC107" color="#FFC107" />
+                        <Star key={i} size={16} fill="#FFC107" color="#FFC107" />
                       ))}
                     </div>
-                    <p style={{ 
-                      color: 'var(--text-body)', 
-                      fontStyle: 'italic', 
-                      lineHeight: '1.6', 
-                      fontSize: '0.98rem', 
-                      margin: 0 
+                    <p style={{
+                      color: 'var(--text-body)',
+                      fontStyle: 'italic',
+                      lineHeight: '1.7',
+                      fontSize: '1.02rem',
+                      margin: '0 0 1.5rem 0'
                     }}>
                       "{review.text}"
                     </p>
                   </div>
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--text-dark)', fontWeight: 700, margin: 0 }}>
+                    — {review.name}
+                  </h4>
                 </div>
               ))}
             </div>
@@ -425,12 +398,12 @@ const Home = () => {
 
           {/* MOBILE VIEW: Carousel */}
           <div className="reviews-mobile-view" style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <div 
+            <div
               className="reviews-carousel-container"
-              style={{ 
-                position: 'relative', 
-                display: 'flex', 
-                alignItems: 'center', 
+              style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
                 minHeight: '360px',
@@ -444,7 +417,7 @@ const Home = () => {
               onMouseLeave={() => setIsHovered(false)}
             >
               {/* Left Chevron */}
-              <button 
+              <button
                 onClick={handlePrev}
                 style={{
                   position: 'absolute',
@@ -490,49 +463,34 @@ const Home = () => {
                       justifyContent: 'center'
                     }}
                   >
-                    <img 
-                      src={reviews[currentReview].image} 
-                      alt={reviews[currentReview].name} 
-                      style={{ 
-                        width: '90px', 
-                        height: '90px', 
-                        borderRadius: '50%', 
-                        objectFit: 'cover', 
-                        marginBottom: '1rem', 
-                        border: '4px solid white', 
-                        boxShadow: '0 8px 16px rgba(0,0,0,0.06)' 
-                      }} 
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <h4 style={{ fontSize: '1.25rem', color: 'var(--text-dark)', marginBottom: '0.25rem', fontWeight: 700 }}>
-                      {reviews[currentReview].name}
-                    </h4>
-                    
                     <div style={{ display: 'flex', gap: '4px', marginBottom: '1.2rem', justifyContent: 'center' }}>
                       {[...Array(reviews[currentReview].rating)].map((_, i) => (
                         <Star key={i} size={16} fill="#FFC107" color="#FFC107" />
                       ))}
                     </div>
 
-                    <p 
+                    <p
                       className="reviews-carousel-text"
-                      style={{ 
-                        color: 'var(--text-body)', 
-                        fontStyle: 'italic', 
-                        lineHeight: '1.6', 
+                      style={{
+                        color: 'var(--text-body)',
+                        fontStyle: 'italic',
+                        lineHeight: '1.6',
                         fontSize: '0.95rem',
-                        margin: 0
+                        margin: '0 0 1.5rem 0'
                       }}
                     >
                       "{reviews[currentReview].text}"
                     </p>
+
+                    <h4 style={{ fontSize: '1.1rem', color: 'var(--text-dark)', fontWeight: 700, margin: 0 }}>
+                      — {reviews[currentReview].name}
+                    </h4>
                   </motion.div>
                 </AnimatePresence>
               </div>
 
               {/* Right Chevron */}
-              <button 
+              <button
                 onClick={handleNext}
                 style={{
                   position: 'absolute',
@@ -600,7 +558,7 @@ const Home = () => {
               View all <span style={{ backgroundColor: '#E0E0E0', borderRadius: '50%', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '14px' }}>›</span>
             </Link>
           </div>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
             {loading ? (
               <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '2rem 0', color: 'var(--text-light)' }}>
@@ -625,12 +583,12 @@ const Home = () => {
           <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
             <h2 style={{ fontSize: '2.25rem', marginBottom: '1.5rem', textAlign: 'center' }}>Features of Pikuboo Diapers</h2>
             <div className="features-image-container">
-              <img 
-                src="/images/caped_diaper-removebg-preview.png" 
-                alt="Pikuboo Diaper Features" 
-                className="features-showcase-image" 
-                loading="lazy" 
-                decoding="async" 
+              <img
+                src="/images/caped_diaper-removebg-preview.png"
+                alt="Pikuboo Diaper Features"
+                className="features-showcase-image"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p style={{ maxWidth: '900px', margin: '0 auto', color: 'var(--text-body)', fontSize: '1.05rem', lineHeight: '1.7', textAlign: 'center' }}>
@@ -642,7 +600,7 @@ const Home = () => {
             {features.map((feature, index) => (
               <div key={index} style={{ padding: '2rem', borderRadius: 'var(--radius-lg)', backgroundColor: 'var(--bg-main)', textAlign: 'center' }}>
                 <div style={{ width: '60px', height: '60px', backgroundColor: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto', boxShadow: 'var(--shadow-soft)' }}>
-                  <img src={feature.icon} alt={feature.title} style={{ width: '30px', height: '30px', objectFit: 'contain' }} loading="lazy" decoding="async" onError={(e) => e.target.style.display='none'} />
+                  <img src={feature.icon} alt={feature.title} style={{ width: '30px', height: '30px', objectFit: 'contain' }} loading="lazy" decoding="async" onError={(e) => e.target.style.display = 'none'} />
                 </div>
                 <h3 style={{ fontSize: '1.15rem', marginBottom: '1rem', textAlign: 'center' }}>{feature.title}</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-light)', lineHeight: '1.6', textAlign: 'center' }}>{feature.desc}</p>
@@ -668,7 +626,7 @@ const Home = () => {
       <section style={{ padding: '5rem 0', backgroundColor: '#F9FBF9' }}>
         <div className="container">
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4rem', alignItems: 'center' }}>
-            
+
             <div style={{ flex: '1 1 400px' }}>
               <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem' }}>Get in Touch With Us</h2>
               <p style={{ fontSize: '1.1rem', color: 'var(--text-body)', lineHeight: '1.8' }}>
@@ -678,7 +636,7 @@ const Home = () => {
 
             <div style={{ flex: '1 1 400px', backgroundColor: 'white', padding: '3rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-soft)' }}>
               <h3 style={{ fontSize: '1.75rem', marginBottom: '2rem' }}>Contact Us</h3>
-              
+
               {status.success && (
                 <div style={{ padding: '12px 20px', backgroundColor: '#eef9eb', color: '#3c763d', borderRadius: 'var(--radius-sm)', marginBottom: '1.5rem', border: '1px solid #d6e9c6', fontWeight: 500, fontSize: '0.95rem' }}>
                   Thank you! Your enquiry has been sent successfully. We will get back to you shortly.
@@ -692,79 +650,79 @@ const Home = () => {
 
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
                 <div>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Full Name *" 
+                    placeholder="Full Name *"
                     required
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: 'var(--radius-pill)', 
-                      border: errors.name ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: 'var(--radius-pill)',
+                      border: errors.name ? '1px solid #e53e3e' : '1px solid #E0E0E0',
                       fontSize: '1rem',
                       outline: 'none',
                       backgroundColor: 'white'
-                    }} 
+                    }}
                   />
                   {errors.name && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.name}</span>}
                 </div>
 
                 <div>
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email Address *" 
+                    placeholder="Email Address *"
                     required
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: 'var(--radius-pill)', 
-                      border: errors.email ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: 'var(--radius-pill)',
+                      border: errors.email ? '1px solid #e53e3e' : '1px solid #E0E0E0',
                       fontSize: '1rem',
                       outline: 'none',
                       backgroundColor: 'white'
-                    }} 
+                    }}
                   />
                   {errors.email && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.email}</span>}
                 </div>
 
                 <div>
-                  <input 
-                    type="tel" 
+                  <input
+                    type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Phone Number (Optional)" 
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: 'var(--radius-pill)', 
-                      border: errors.phone ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
+                    placeholder="Phone Number (Optional)"
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: 'var(--radius-pill)',
+                      border: errors.phone ? '1px solid #e53e3e' : '1px solid #E0E0E0',
                       fontSize: '1rem',
                       outline: 'none',
                       backgroundColor: 'white'
-                    }} 
+                    }}
                   />
                   {errors.phone && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.phone}</span>}
                 </div>
-                
+
                 <div style={{ position: 'relative' }}>
-                  <select 
+                  <select
                     name="inquiryType"
                     value={formData.inquiryType}
                     onChange={handleChange}
                     required
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: 'var(--radius-pill)', 
-                      border: errors.inquiryType ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
-                      fontSize: '1rem', 
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: 'var(--radius-pill)',
+                      border: errors.inquiryType ? '1px solid #e53e3e' : '1px solid #E0E0E0',
+                      fontSize: '1rem',
                       color: formData.inquiryType ? 'var(--text-dark)' : 'var(--text-light)',
                       appearance: 'none',
                       backgroundColor: 'white',
@@ -782,48 +740,48 @@ const Home = () => {
                 </div>
 
                 {/* Honeypot field (hidden from users, filled by bots) */}
-                <input 
-                  type="text" 
-                  name="website_url" 
-                  value={formData.website_url} 
-                  onChange={handleChange} 
-                  style={{ display: 'none' }} 
-                  tabIndex="-1" 
-                  autoComplete="off" 
+                <input
+                  type="text"
+                  name="website_url"
+                  value={formData.website_url}
+                  onChange={handleChange}
+                  style={{ display: 'none' }}
+                  tabIndex="-1"
+                  autoComplete="off"
                 />
-                
-                <input 
-                  type="text" 
+
+                <input
+                  type="text"
                   name="company"
                   value={formData.company}
                   onChange={handleChange}
-                  placeholder="Company Name (Optional)" 
-                  style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', outline: 'none', backgroundColor: 'white' }} 
+                  placeholder="Company Name (Optional)"
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', outline: 'none', backgroundColor: 'white' }}
                 />
-                <input 
-                  type="text" 
+                <input
+                  type="text"
                   name="country"
                   value={formData.country}
                   onChange={handleChange}
-                  placeholder="Country / Region" 
-                  style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', outline: 'none', backgroundColor: 'white' }} 
+                  placeholder="Country / Region"
+                  style={{ width: '100%', padding: '12px 16px', borderRadius: 'var(--radius-pill)', border: '1px solid #E0E0E0', fontSize: '1rem', outline: 'none', backgroundColor: 'white' }}
                 />
-                
+
                 <div>
-                  <textarea 
+                  <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Your Message *" 
-                    rows="4" 
+                    placeholder="Your Message *"
+                    rows="4"
                     required
-                    style={{ 
-                      width: '100%', 
-                      padding: '12px 16px', 
-                      borderRadius: 'var(--radius-md)', 
-                      border: errors.message ? '1px solid #e53e3e' : '1px solid #E0E0E0', 
-                      fontSize: '1rem', 
-                      fontFamily: 'inherit', 
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: 'var(--radius-md)',
+                      border: errors.message ? '1px solid #e53e3e' : '1px solid #E0E0E0',
+                      fontSize: '1rem',
+                      fontFamily: 'inherit',
                       resize: 'none',
                       outline: 'none',
                       backgroundColor: 'white'
@@ -831,30 +789,30 @@ const Home = () => {
                   ></textarea>
                   {errors.message && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '0.5rem' }}>{errors.message}</span>}
                 </div>
-                
+
                 <div>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                    <input 
-                      type="checkbox" 
-                      id="agree" 
+                    <input
+                      type="checkbox"
+                      id="agree"
                       name="agree"
                       checked={formData.agree}
                       onChange={handleChange}
-                      style={{ marginTop: '5px' }} 
+                      style={{ marginTop: '5px' }}
                     />
                     <label htmlFor="agree" style={{ fontSize: '0.9rem', color: errors.agree ? '#e53e3e' : 'var(--text-light)' }}>I agree to be contacted regarding my inquiry. *</label>
                   </div>
                   {errors.agree && <span style={{ color: '#e53e3e', fontSize: '0.85rem', marginTop: '4px', display: 'block', paddingLeft: '1.8rem' }}>{errors.agree}</span>}
                 </div>
 
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   disabled={status.submitting}
-                  className="btn-primary" 
-                  style={{ 
-                    borderRadius: 'var(--radius-pill)', 
-                    padding: '14px', 
-                    fontSize: '1.05rem', 
+                  className="btn-primary"
+                  style={{
+                    borderRadius: 'var(--radius-pill)',
+                    padding: '14px',
+                    fontSize: '1.05rem',
                     marginTop: '1rem',
                     opacity: status.submitting ? 0.7 : 1,
                     cursor: status.submitting ? 'not-allowed' : 'pointer'

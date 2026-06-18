@@ -14,20 +14,20 @@ const RefundPolicy = () => {
           <div className="policy-content">
             <h1>Return and Refund Policy</h1>
             <p className="policy-last-updated">Last updated: June 15, 2026</p>
-            
+
             <p>Thank you for shopping at Pikuboo Care.</p>
-            
+
             <p>If, for any reason, You are not completely satisfied with a purchase, We invite You to review our policy on refunds, returns, and exchanges. This policy applies to products purchased through any of our available channels: directly via our Website, through WhatsApp order messages, or via redirect links to third-party e-commerce platforms such as Amazon and Flipkart.</p>
-            
+
             <p>Please note that the applicable refund and return process may differ depending on the channel through which You made Your purchase, as described in detail below.</p>
-            
+
             <p>The following terms are applicable for any products that You purchased with Us.</p>
-            
+
             <h2>Interpretation and Definitions</h2>
-            
+
             <h3>Interpretation</h3>
             <p>The words whose initial letters are capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
-            
+
             <h3>Definitions</h3>
             <p>For the purposes of this Return and Refund Policy:</p>
             <ul>
@@ -52,9 +52,9 @@ const RefundPolicy = () => {
             </ul>
 
             <h2>Your Order Cancellation Rights</h2>
-            <p>You are entitled to cancel Your Order within 14 days without giving any reason for doing so.</p>
-            <p>The deadline for cancelling an Order is 14 days from the date on which You received the Goods or on which a third party you have appointed, who is not the carrier, takes possession of the product delivered.</p>
-            <p>In order to exercise Your right of cancellation, You must inform Us of your decision by means of a clear statement. You can inform Us of your decision by:</p>
+            <p>You are entitled to return Your Order within 14 days without giving any reason for doing so.</p>
+            <p>The deadline for returning an Order is 14 days from the date on which You received the Goods or on which a third party you have appointed, who is not the carrier, takes possession of the product delivered.</p>
+            <p>In order to exercise Your right of returning Your Order, You must inform Us of your decision by means of a clear statement. You can inform Us of your decision by:</p>
             <ul>
               <li>
                 <p>By email: <a href="mailto:connect@pikuboo.com">connect@pikuboo.com</a></p>
@@ -77,6 +77,7 @@ const RefundPolicy = () => {
               <li>The Goods were purchased within the last 14 days</li>
               <li>The Goods are in their original packaging, unused, and undamaged</li>
               <li>You have the original receipt or valid proof of purchase (order confirmation, payment screenshot, or invoice)</li>
+              <li>In case of a damaged product, a video proof of unboxing is required to process the return or exchange request. The video must clearly show the damage at the time of delivery.</li>
             </ul>
             <p>The following Goods cannot be returned:</p>
             <ul>
@@ -99,14 +100,14 @@ const RefundPolicy = () => {
             <p>The product being exchanged must meet the same return conditions stated above — original packaging, unused, undamaged, and accompanied by proof of purchase. Once We receive and inspect the returned item, We will dispatch the replacement product. Shipping costs for the exchange may apply depending on the situation and will be communicated to You at the time of the request.</p>
 
             <h2>Refunds by Purchase Channel</h2>
-            
+
             <h3>Direct Website Purchase</h3>
             <p>If You purchased directly through our Website, We will process Your refund within 14 days of receiving the returned Goods and confirming they meet the return conditions. The refund will be issued via the same payment method used at the time of purchase. No additional fees will be charged for the reimbursement.</p>
-            
+
             <h3>Purchase via WhatsApp</h3>
             <p>If Your order was placed through a WhatsApp message, the refund process follows the same eligibility conditions but may involve additional steps and take longer to process compared to direct website purchases. This is due to the manual nature of order handling and payment verification involved in WhatsApp-based transactions.</p>
             <p>To initiate a return or refund for a WhatsApp order, please contact Us directly via the same WhatsApp number used for the order or through the contact details below. You will be guided through the steps required, which may include sharing your payment proof, order details, and return shipment tracking information. Processing timelines will be communicated to You at that time and may extend beyond the standard 14-day period depending on verification requirements.</p>
-            
+
             <h3>Purchase via E-Commerce Platforms (Amazon / Flipkart)</h3>
             <p>If You purchased a product by clicking a redirect link from our Website to a third-party e-commerce platform such as Amazon or Flipkart, the return, refund, and exchange process is governed entirely by the policies of that specific platform and the seller listed on it. Pikuboo Care is not a party to the transaction completed on a third-party platform and does not process refunds for such purchases.</p>
             <p>Please refer to the return and refund policy of the respective platform:</p>
